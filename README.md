@@ -33,4 +33,4 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
-note : json-server --watch db.json --port 3001
+note : npx json-server --watch db.json --port 3001 / json-server --watch db.json --port 3001

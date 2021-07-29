@@ -3,7 +3,7 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Link from "next/link";
 
-export default function Home() {
+export default function Home({ externalPostData }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -38,9 +38,39 @@ export default function Home() {
         </div>
       </main>
 
+      <main>
+        <p className={styles.description}>
+          Data db.json
+        </p>
+
+        <div className={styles.grid}>
+          {externalPostData.map((data) => {
+            return (
+              <Link href={data.link}>
+                <a className={styles.card}>
+                  <h3>{data.title}</h3>
+                  <p>{data.excerpt}</p>
+                </a>
+              </Link>
+            );
+          })}
+        </div>
+      </main>
+
       <footer className={styles.footer}>
         Powered by Zikri Ramdani
       </footer>
     </div>
   )
+}
+
+export async function getStaticProps() {
+  const apiURL = "http://localhost:3001/posts";
+  const response = await fetch(apiURL);
+  const data = await response.json();
+  return {
+    props: {
+      externalPostData: data,
+    },
+  };
 }
