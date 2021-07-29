@@ -54,6 +54,8 @@ export default function Home({ externalPostData }) {
               </Link>
             );
           })}
+
+
         </div>
       </main>
 
@@ -65,17 +67,35 @@ export default function Home({ externalPostData }) {
 }
 
 export async function getStaticProps() {
-  const apiURL = "http://localhost:3001/posts";
+  const apiURL = "http://localhost:3001/posts" | null;
+  
   if(apiURL) {
-    console.log('a')
+    const response = await fetch(apiURL);
+    const data = await response.json();
+    return {
+      props: {
+        externalPostData: data,
+      },
+    };
   } else {
-    console('b')
+    const data = [
+      {
+        "id" : 1,
+        "title": "Page 1",
+        "excerpt": "Lorem Ipsum is simply dummy text of the printing and typesettingindustry.",
+        "link": "/pageone"
+      },
+      {
+        "id" : 2,
+        "title": "Page 2",
+        "excerpt": "Lorem Ipsum is simply dummy text of the printing and typesettingindustry.",
+        "link": "/pagetwo"
+      }
+    ];
+    return {
+      props: {
+        externalPostData: data,
+      },
+    };
   }
-  const response = await fetch(apiURL);
-  const data = await response.json();
-  return {
-    props: {
-      externalPostData: data,
-    },
-  };
 }
