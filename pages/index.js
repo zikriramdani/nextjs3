@@ -46,7 +46,7 @@ export default function Home({ externalPostData }) {
         <div className={styles.grid}>
           {externalPostData.map((data) => {
             return (
-              <Link href={data.link}>
+              <Link href={data.link} key={data.id}>
                 <a className={styles.card}>
                   <h3>{data.title}</h3>
                   <p>{data.excerpt}</p>
@@ -66,6 +66,11 @@ export default function Home({ externalPostData }) {
 
 export async function getStaticProps() {
   const apiURL = "http://localhost:3001/posts";
+  if(apiURL) {
+    console.log('a')
+  } else {
+    console('b')
+  }
   const response = await fetch(apiURL);
   const data = await response.json();
   return {
