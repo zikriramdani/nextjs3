@@ -4,6 +4,7 @@ import Link from "next/link";
 
 // add bootstrap css 
 import 'bootstrap/dist/css/bootstrap.css';
+import { signIn, signOut, useSession } from 'next-auth/client'
 
 export default function Home() {
   return (
