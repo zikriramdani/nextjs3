@@ -28,11 +28,11 @@ export default function Home() {
           <form action="" method="POST">
             <div class="mb-3">
               <label for="exampleInputUsername1" class="form-label">Username</label>
-              <input value="username1" type="text" class="form-control" id="exampleInputUsername1" aria-describedby="usernameHelp" required />
+              <input value="username 1" type="text" class="form-control" id="exampleInputUsername1" aria-describedby="usernameHelp" required />
             </div>
             <div class="mb-3">
               <label for="exampleInputPassword1" class="form-label">Password</label>
-              <input value="password1" type="password" class="form-control" id="exampleInputPassword1" required />
+              <input value="password 1" type="password" class="form-control" id="exampleInputPassword1" required />
             </div>
             <button type="submit" class="btn btn-primary">Sign In</button>
           </form>
