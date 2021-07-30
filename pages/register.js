@@ -1,7 +1,10 @@
 import Head from 'next/head'
 import Layout from '../components/layout';
 import Link from "next/link";
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Home.module.css';
+
+// add bootstrap css 
+import 'bootstrap/dist/css/bootstrap.css';
 
 export default function Register() {
     return (
@@ -13,9 +16,29 @@ export default function Register() {
             <main className={styles.main}>
                 <div className={styles.grid}>
                     <h1>Register</h1>
-                    <p>
-                        Lorem Ipsum is simply dummy text of the printing and typesettingindustry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged
-                    </p>
+                    
+                    <div class="w-100 mb-5">
+                        <form action="" method="POST">
+                            <div class="mb-3">
+                                <label for="exampleInputUsername1" class="form-label">Username</label>
+                                <input type="text" class="form-control" id="exampleInputUsername1" aria-describedby="usernameHelp" required />
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputPassword1" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="exampleInputPassword1" required />
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputUsername1" class="form-label">Username</label>
+                                <input type="text" class="form-control" id="exampleInputUsername1" aria-describedby="usernameHelp" required />
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputUsername1" class="form-label">Username</label>
+                                <input type="text" class="form-control" id="exampleInputUsername1" aria-describedby="usernameHelp" required />
+                            </div>
+                            <button type="submit" class="btn btn-primary">Sign Up</button>
+                        </form>
+                    </div>
+                    
                     <Link href="/">
                         <a>
                             <p>Back to Home</p>

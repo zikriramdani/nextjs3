@@ -24,16 +24,16 @@ export default function Home() {
         </p>
 
         <div className="w-100">
-          <form action="http://www.acme.com/register" method="POST">
+          <form action="" method="POST">
             <div class="mb-3">
-              <label for="exampleInputEmail1" class="form-label">Email</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required />
+              <label for="exampleInputUsername1" class="form-label">Username</label>
+              <input value="username1" type="text" class="form-control" id="exampleInputUsername1" aria-describedby="usernameHelp" required />
             </div>
             <div class="mb-3">
               <label for="exampleInputPassword1" class="form-label">Password</label>
-              <input type="password" class="form-control" id="exampleInputPassword1" required />
+              <input value="password1" type="password" class="form-control" id="exampleInputPassword1" required />
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Sign In</button>
           </form>
         </div>
 
