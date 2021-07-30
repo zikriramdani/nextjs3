@@ -1,7 +1,9 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Link from "next/link";
+
+// add bootstrap css 
+import 'bootstrap/dist/css/bootstrap.css';
 
 export default function Home() {
   return (
@@ -21,11 +23,24 @@ export default function Home() {
           Get started
         </p>
 
+        <div className="w-100">
+          <form action="http://www.acme.com/register" method="POST">
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Email</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required />
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Password</label>
+              <input type="password" class="form-control" id="exampleInputPassword1" required />
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+
         <div className={styles.grid}>
-          <Link href="/pageone">
+          <Link href="/register">
             <a className={styles.card}>
-              <h2>Page 1 &rarr;</h2>
-              <p>Anda akan menuju ke Page 1.</p>
+              <p>Belum punya akun? Daftar disini.</p>
             </a>
           </Link>
         </div>
