@@ -1,3 +1,4 @@
 {
-    "username": "[#faker:internet:userName]"
+    "username": "zikri@gmail.com",
+    "password": 123456
 }
