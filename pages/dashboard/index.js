@@ -20,7 +20,7 @@ export default function Dashboard(props) {
     return (
         <Layout>
             <Head>
-                <title>Page 1 - Create Next App</title>
+                <title>Dashboard - Create Next App</title>
             </Head>
 
             <main className={styles.main}>
