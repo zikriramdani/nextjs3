@@ -9,6 +9,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { signIn, signOut, useSession } from 'next-auth/client'
 
 import React, { useState } from 'react';
+import axios from 'axios';
 
 export default function Home(props) {
     const username = useFormInput('');
@@ -19,7 +20,17 @@ export default function Home(props) {
     
     // handle button click of login form
     const handleLogin = () => {
-        router.push('/dashboard');
+        setError(null);
+        setLoading(true);
+        axios.post(process.env.NEXT_PUBLIC_API_URL + 'users', { username: username.value, password: password.value }).then(response => {
+            setLoading(false);
+            console.log('res', response)
+            // setUserSession(response.data.token, response.data.user);
+            // router.push('/dashboard');
+            
+        }).catch(error => {
+            setLoading(false);
+        });
     }
 
     return (
@@ -41,26 +52,24 @@ export default function Home(props) {
 
                 <div className="w-100">
                 <form action="" method="POST">
-                    <div class="mb-3">
-                    <label for="exampleInputUsername1" class="form-label">Username</label>
-                    <input value="username 1" type="text" name="username" class="form-control" aria-describedby="usernameHelp" required />
+                    <div className="mb-3">
+                    <label for="exampleInputUsername1" className="form-label">Username</label>
+                    <input type="text" name="username" className="form-control" required />
                     </div>
-                    <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <input value="password 1" type="password" name="password" class="form-control" required />
+                    <div className="mb-3">
+                    <label for="exampleInputPassword1" className="form-label">Password</label>
+                    <input type="password" name="password" className="form-control" required />
                     </div>
-                    <input class="btn btn-primary" type="button" value={loading ? 'Loading...' : 'Login'} onClick={handleLogin} disabled={loading} /><br></br>
-                    {error && <><small style={{ color: 'red' }}>{error}</small><br /></>}<br></br>
-                    {/* <button type="submit" class="btn btn-primary">Sign In</button> */}
+                    <input className="btn btn-primary" type="button" value={loading ? 'Loading...' : 'Login'} onClick={handleLogin} disabled={loading} /><br></br>
                 </form>
                 </div>
 
                 <div className={styles.grid}>
-                <Link href="/register">
-                    <a className={styles.card}>
-                    <p>Belum punya akun? Daftar disini.</p>
-                    </a>
-                </Link>
+                    <Link href="/register">
+                        <a className={styles.card}>
+                            <p>Belum punya akun? Daftar disini.</p>
+                        </a>
+                    </Link>
                 </div>
             </main>
 

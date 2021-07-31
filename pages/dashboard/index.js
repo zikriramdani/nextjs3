@@ -6,10 +6,14 @@ import Footer from '../../components/footer';
 import { useRouter } from 'next/router';
 // import { getSession } from 'next-auth/client'
 
-export default function Dashboard({ user, props }) {
+// import { getUser, removeUserSession } from './Utils/Common';
+
+export default function Dashboard(props) {
+    const user = getUser();
     const router = useRouter();
     // handle click event of logout button
     const handleLogout = () => {    
+        removeUserSession();
         router.push('/');
     }
 
