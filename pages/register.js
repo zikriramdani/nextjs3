@@ -46,15 +46,15 @@ export default function Register(props) {
                         <form action="" method="POST">
                             <div className="mb-3">
                                 <label className="form-label">Username</label>
-                                <input type="text" name="username" {...username} className="form-control" required />
+                                <input type="text" {...username} className="form-control" required />
                             </div>
                             <div className="mb-3">
                                 <label className="form-label">Password</label>
-                                <input type="password" name="password" {...password} className="form-control" required />
+                                <input type="password" {...password} className="form-control" required />
                             </div>
                             <div className="mb-3">
                                 <label className="form-label">Name</label>
-                                <input type="text" name="name" {...name} className="form-control" required />
+                                <input type="text" {...name} className="form-control" required />
                             </div>
                             <input className="btn btn-primary" type="button" value={loading ? 'Loading...' : 'Signup'} onClick={handleRegister} disabled={loading} /><br></br>
                         </form>
