@@ -1,5 +1,5 @@
 import React from 'react';
-import UserContext from '../lib/userContext';
+import UserContext from '../../lib/userContext';
 import Router from 'next/router';
 
 import Cookies from 'js-cookie';
@@ -29,7 +29,7 @@ export default function Dashboard(props) {
             <main className={styles.main}>
                 <div className={styles.grid}>
                     <h1>Dashboard</h1>
-                    {/* <p>Welcome {user.username}</p> */}
+                    <p>Welcome {user.username}</p>
                 </div>
                 <div className={styles.grid}>
                     <a onClick={handleLogout} className={styles.cursorPointer}>

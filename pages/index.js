@@ -58,11 +58,11 @@ export default function Home(props) {
                     <form onSubmit={handleLogin}>
                         <div className="mb-3">
                             <label className="form-label">Username</label>
-                            <input type="email" onChange={e => setEmail(e.target.value)} className="form-control" required />
+                            <input type="email" value="zikri@gmail.com" onChange={e => setEmail(e.target.value)} className="form-control" required />
                         </div>
                         <div className="mb-3">
                             <label className="form-label">Password</label>
-                            <input type="password" onChange={e => setPassword(e.target.value)} className="form-control" required />
+                            <input type="password" value="123456" onChange={e => setPassword(e.target.value)} className="form-control" required />
                         </div>
                         <button type="submit" className="btn btn-primary">Submit</button>
                     </form>
