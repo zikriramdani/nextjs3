@@ -13,6 +13,12 @@ import Footer from '../../components/footer';
 export default function Dashboard(props) {
     const { user, setUser } = React.useContext(UserContext);
 
+    React.useEffect(() => {
+        if(!user) {
+            Router.push('/');
+        }
+    }, [])
+
     // handle click event of logout button
     const handleLogout = () => {   
         Cookies.remove('jwt');
@@ -29,7 +35,7 @@ export default function Dashboard(props) {
             <main className={styles.main}>
                 <div className={styles.grid}>
                     <h1>Dashboard</h1>
-                    <p>Welcome {user.username}</p>
+                    <p>{user ? <span>Logged in as {user.username}</span> : '...'}</p>
                 </div>
                 <div className={styles.grid}>
                     <a onClick={handleLogout} className={styles.cursorPointer}>
