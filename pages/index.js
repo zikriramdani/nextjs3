@@ -1,3 +1,9 @@
+import React, { useState } from "react";
+import Router from 'next/router';
+import Cookies from 'js-cookie';
+import UserContext from '../lib/userContext';
+import api from '../axiosStore'
+
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import Link from "next/link";
@@ -6,16 +12,10 @@ import Footer from '../components/footer';
 // add bootstrap css 
 import 'bootstrap/dist/css/bootstrap.css';
 
-import Router from 'next/router';
-import Cookies from 'js-cookie';
-import UserContext from '../lib/userContext';
-import api from '../axiosStore'
-
 export default function Home(props) {
     const { setUser } = React.useContext(UserContext)
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
-    const router = useRouter();
     
     // handle button click of login form
     const handleLogin = async (event) => {
@@ -27,7 +27,7 @@ export default function Home(props) {
         // fetch user data
         api.get('/me').then(({ data }) => {
             setUser(data)
-            Router.push('/');
+            Router.push('/dashboard');
         })
 
         }).catch(({ response }) => {
@@ -55,16 +55,16 @@ export default function Home(props) {
                 </p>
 
                 <div className="w-100">
-                    <form action="" method="POST">
+                    <form onSubmit={handleLogin}>
                         <div className="mb-3">
                             <label className="form-label">Username</label>
-                            <input type="text" name="username" className="form-control" required />
+                            <input type="email" onChange={e => setEmail(e.target.value)} className="form-control" required />
                         </div>
                         <div className="mb-3">
                             <label className="form-label">Password</label>
-                            <input type="password" name="password" className="form-control" required />
+                            <input type="password" onChange={e => setPassword(e.target.value)} className="form-control" required />
                         </div>
-                        <input className="btn btn-primary" type="button" value={loading ? 'Loading...' : 'Login'} onClick={handleLogin} disabled={loading} /><br></br>
+                        <button type="submit" className="btn btn-primary">Submit</button>
                     </form>
                 </div>
 

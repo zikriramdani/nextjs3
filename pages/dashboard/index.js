@@ -1,20 +1,23 @@
+import React from 'react';
+import UserContext from '../lib/userContext';
+import Router from 'next/router';
+
+import Cookies from 'js-cookie';
+
 import Head from 'next/head'
 import Layout from '../../components/layout';
 import Link from "next/link";
 import styles from '../../styles/Home.module.css';
 import Footer from '../../components/footer';
-import { useRouter } from 'next/router';
-// import { getSession } from 'next-auth/client'
-
-// import { getUser, removeUserSession } from './Utils/Common';
 
 export default function Dashboard(props) {
-    const user = getUser();
-    const router = useRouter();
+    const { user, setUser } = React.useContext(UserContext);
+
     // handle click event of logout button
-    const handleLogout = () => {    
-        removeUserSession();
-        router.push('/');
+    const handleLogout = () => {   
+        Cookies.remove('jwt');
+        setUser(null);
+        Router.push('/');
     }
 
     return (
@@ -26,10 +29,9 @@ export default function Dashboard(props) {
             <main className={styles.main}>
                 <div className={styles.grid}>
                     <h1>Dashboard</h1>
-                    {/* <p>Welcome {user.email}</p> */}
+                    {/* <p>Welcome {user.username}</p> */}
                 </div>
                 <div className={styles.grid}>
-                    {/* <input type="button" onClick={handleLogout} value="Logout" /> */}
                     <a onClick={handleLogout} className={styles.cursorPointer}>
                         <p>Logout</p>
                     </a>
