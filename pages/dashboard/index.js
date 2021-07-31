@@ -35,8 +35,8 @@ export default function Dashboard(props) {
             <main className={styles.main}>
                 <div className={styles.grid}>
                     <h1>Dashboard</h1>
-                    <p>{user ? <span>Logged in as {user.username}</span> : '...'}</p>
                 </div>
+                <p>{user ? <span>Logged in as {user.username}</span> : '...'}</p>
                 <div className={styles.grid}>
                     <a onClick={handleLogout} className={styles.cursorPointer}>
                         <p>Logout</p>
