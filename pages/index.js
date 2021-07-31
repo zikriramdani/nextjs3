@@ -53,11 +53,11 @@ export default function Home(props) {
                 <div className="w-100">
                 <form action="" method="POST">
                     <div className="mb-3">
-                    <label for="exampleInputUsername1" className="form-label">Username</label>
+                    <label className="form-label">Username</label>
                     <input type="text" name="username" className="form-control" required />
                     </div>
                     <div className="mb-3">
-                    <label for="exampleInputPassword1" className="form-label">Password</label>
+                    <label className="form-label">Password</label>
                     <input type="password" name="password" className="form-control" required />
                     </div>
                     <input className="btn btn-primary" type="button" value={loading ? 'Loading...' : 'Login'} onClick={handleLogin} disabled={loading} /><br></br>
