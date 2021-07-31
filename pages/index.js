@@ -2,35 +2,39 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import Link from "next/link";
 import Footer from '../components/footer';
-import { useRouter } from 'next/router';
 
 // add bootstrap css 
 import 'bootstrap/dist/css/bootstrap.css';
-import { signIn, signOut, useSession } from 'next-auth/client'
 
-import React, { useState } from 'react';
-import axios from 'axios';
+import Router from 'next/router';
+import Cookies from 'js-cookie';
+import UserContext from '../lib/userContext';
+import api from '../axiosStore'
 
 export default function Home(props) {
-    const username = useFormInput('');
-    const password = useFormInput('');
-    const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(false);
+    const { setUser } = React.useContext(UserContext)
+    const [email, setEmail] = React.useState('');
+    const [password, setPassword] = React.useState('');
     const router = useRouter();
     
     // handle button click of login form
-    const handleLogin = () => {
-        setError(null);
-        setLoading(true);
-        axios.post(process.env.NEXT_PUBLIC_API_URL + 'users', { username: username.value, password: password.value }).then(response => {
-            setLoading(false);
-            console.log('res', response)
-            // setUserSession(response.data.token, response.data.user);
-            // router.push('/dashboard');
-            
-        }).catch(error => {
-            setLoading(false);
-        });
+    const handleLogin = async (event) => {
+        event.preventDefault()
+        api.post('/auth/login', { email, password }).then((response) => {
+            const { token } = response.data
+            Cookies.set('jwt', token);
+
+        // fetch user data
+        api.get('/me').then(({ data }) => {
+            setUser(data)
+            Router.push('/');
+        })
+
+        }).catch(({ response }) => {
+            if (response?.status === 401) {
+                alert('Invalid credentials')
+            }
+        })
     }
 
     return (

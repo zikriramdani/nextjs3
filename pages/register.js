@@ -23,7 +23,7 @@ export default function Register(props) {
     const handleRegister = () => {
         setError(null);
         setLoading(true);
-        axios.post(process.env.NEXT_PUBLIC_API_URL + 'users', { username: username.value, password: password.value, name: name.value }).then(response => {
+        axios.post('https://6103e57c3356ea001748f543.mockapi.io/api/v1/users', { username: username.value, password: password.value, name: name.value }).then(response => {
             setLoading(false);
             console.log('response', response)
             router.push('/');
