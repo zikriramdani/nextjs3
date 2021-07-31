@@ -14,6 +14,7 @@ import axios from 'axios';
 export default function Register(props) {
     const username = useFormInput('');
     const password = useFormInput('');
+    const name = useFormInput('');
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
     const router = useRouter();
@@ -22,7 +23,7 @@ export default function Register(props) {
     const handleRegister = () => {
         setError(null);
         setLoading(true);
-        axios.post(process.env.NEXT_PUBLIC_API_URL + 'users', { username: username.value, password: password.value }).then(response => {
+        axios.post(process.env.NEXT_PUBLIC_API_URL + 'users', { username: username.value, password: password.value, name: name.value }).then(response => {
             setLoading(false);
             console.log('response', response)
             router.push('/register');
@@ -51,14 +52,10 @@ export default function Register(props) {
                                 <label for="exampleInputPassword1" className="form-label">Password</label>
                                 <input type="password" name="password" className="form-control" required />
                             </div>
-                            {/* <div class="mb-3">
-                                <label for="exampleInputUsername1" class="form-label">Username</label>
-                                <input type="text" class="form-control" id="exampleInputUsername1" aria-describedby="usernameHelp" required />
+                            <div className="mb-3">
+                                <label for="exampleInputUsername1" className="form-label">Name</label>
+                                <input type="text" name="name" className="form-control" required />
                             </div>
-                            <div class="mb-3">
-                                <label for="exampleInputUsername1" class="form-label">Username</label>
-                                <input type="text" class="form-control" id="exampleInputUsername1" aria-describedby="usernameHelp" required />
-                            </div> */}
                             <input className="btn btn-primary" type="button" value={loading ? 'Loading...' : 'Sign Up'} onClick={handleRegister} disabled={loading} /><br></br>
                         </form>
                     </div>
