@@ -26,7 +26,7 @@ export default function Register(props) {
         axios.post(process.env.NEXT_PUBLIC_API_URL + 'users', { username: username.value, password: password.value, name: name.value }).then(response => {
             setLoading(false);
             console.log('response', response)
-            router.push('/register');
+            router.push('/');
         }).catch(error => {
             setLoading(false);
         });
@@ -43,18 +43,18 @@ export default function Register(props) {
                     <h1>Register</h1>
                     
                     <div className="w-100 mb-5">
-                        <form method="POST">
+                        <form action="" method="POST">
                             <div className="mb-3">
                                 <label className="form-label">Username</label>
-                                <input type="text" name="username" className="form-control" required />
+                                <input type="text" name="username" {...username} className="form-control" required />
                             </div>
                             <div className="mb-3">
                                 <label className="form-label">Password</label>
-                                <input type="password" name="password" className="form-control" required />
+                                <input type="password" name="password" {...password} className="form-control" required />
                             </div>
                             <div className="mb-3">
                                 <label className="form-label">Name</label>
-                                <input type="text" name="name" className="form-control" required />
+                                <input type="text" name="name" {...name} className="form-control" required />
                             </div>
                             <input className="btn btn-primary" type="button" value={loading ? 'Loading...' : 'Signup'} onClick={handleRegister} disabled={loading} /><br></br>
                         </form>
