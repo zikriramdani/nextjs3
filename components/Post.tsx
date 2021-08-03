@@ -1,8 +1,8 @@
 import * as React from 'react'
-import { IPost } from '../types'
+import { Article } from '../types'
 
 type Props = {
-  post: IPost
+  post: Article
   deletePost: (id: number) => void
 }
 

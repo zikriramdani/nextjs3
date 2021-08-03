@@ -1,12 +1,12 @@
 import * as React from 'react'
-import { IPost } from '../types'
+import { Article } from '../types'
 
 type Props = {
-  savePost: (e: React.FormEvent, formData: IPost) => void
+  savePost: (e: React.FormEvent, formData: Article) => void
 }
 
 const AddPost: React.FC<Props> = ({ savePost }) => {
-  const [formData, setFormData] = React.useState<IPost>()
+  const [formData, setFormData] = React.useState<Article>()
 
   const handleForm = (e: React.FormEvent<HTMLInputElement>): void => {
     setFormData({

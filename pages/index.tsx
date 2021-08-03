@@ -2,7 +2,7 @@ import * as React from 'react'
 import { InferGetStaticPropsType } from 'next'
 import AddPost from '../components/AddPost'
 import Post from '../components/Post'
-import { IPost } from '../types'
+import { Article } from '../types'
 
 const BASE_URL: string = 'https://jsonplaceholder.typicode.com/posts'
 
@@ -11,9 +11,9 @@ export default function IndexPage({
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const [postList, setPostList] = React.useState(posts)
 
-  const addPost = async (e: React.FormEvent, formData: IPost) => {
+  const addPost = async (e: React.FormEvent, formData: Article) => {
     e.preventDefault()
-    const post: IPost = {
+    const post: Article = {
       id: Math.random(),
       title: formData.title,
       body: formData.body,
@@ -22,7 +22,7 @@ export default function IndexPage({
   }
 
   const deletePost = async (id: number) => {
-    const posts: IPost[] = postList.filter((post: IPost) => post.id !== id)
+    const posts: Article[] = postList.filter((post: Article) => post.id !== id)
     console.log(posts)
     setPostList(posts)
   }
@@ -33,7 +33,7 @@ export default function IndexPage({
     <main className='container'>
       <h1>My posts</h1>
       <AddPost savePost={addPost} />
-      {postList.map((post: IPost) => (
+      {postList.map((post: Article) => (
         <Post key={post.id} deletePost={deletePost} post={post} />
       ))}
     </main>
@@ -42,7 +42,7 @@ export default function IndexPage({
 
 export async function getStaticProps() {
   const res = await fetch(BASE_URL)
-  const posts: IPost[] = await res.json()
+  const posts: Article[] = await res.json()
 
   return {
     props: {
