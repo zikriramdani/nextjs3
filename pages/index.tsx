@@ -78,7 +78,6 @@ const mapStateToProps = (state) => {
 }
 //untuk manggil method di action
 const mapDispatchToProps = (dispatch) => {
-    console.log('dispatch')
     return {
         getListUser: () => dispatch(getListUser())
     };
