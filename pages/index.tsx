@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { Component } from "react";
 import { connect } from 'react-redux';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -6,13 +6,7 @@ import TableUser from '../components/TableUser';
 
 import { getListUser } from '../action/action.user'
 
-interface IProps {
-  userList: any
-}
-
-interface IState {}
-
-class IndexPage extends React.Component<IProps, IState> {
+class IndexPage extends Component {
     render() {
         return (
             <main className='container'>
