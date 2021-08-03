@@ -20,3 +20,5 @@ export const saveListUser =(payload) => {
         payload: payload
     };
 };
+
+export default getListUser
