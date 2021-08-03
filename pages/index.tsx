@@ -7,6 +7,13 @@ import TableUser from '../components/TableUser';
 import { getListUser } from '../action/action.user'
 
 class IndexPage extends Component {
+    constructor(props) {
+        super(props);
+    }
+    componentDidMount() {
+        getListUser();
+    }
+
     render() {
         return (
             <main className='container'>
@@ -63,14 +70,17 @@ class IndexPage extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({
-    userList: state.user,
-})
-
-const mapDispatchToProps = (dispatch) => ({
-    getListUser: () => {
-        return dispatch(getListUser())
-    },
-})
+//untuk baca state dari reducer
+const mapStateToProps = (state) => {
+    return {
+        user: state.userList,
+    }
+}
+//untuk manggil method di action
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getListUser: () => dispatch(getListUser())
+    };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(IndexPage)
