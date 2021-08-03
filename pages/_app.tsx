@@ -17,9 +17,9 @@ export default withRedux(initStore)(class MyApp extends App {
 
   render () {
     const {Component, pageProps, store} = this.props
-    return <Provider store={store}>
-        <Component {...pageProps} />
-      </Provider>
-	// return <Component {...pageProps} />
+    // return <Provider store={store}>
+    //     <Component {...pageProps} />
+    //   </Provider>
+	return <Component {...pageProps} />
   }
 })
