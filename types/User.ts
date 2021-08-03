@@ -1,6 +1,7 @@
 export interface User {
     id: number
-    name: string
-    job: string
-    createdAt: Date
+    avatar: string
+    fist_name: string
+    last_name: string
+    email: string
 }

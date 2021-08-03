@@ -37,7 +37,9 @@ export default function IndexPage({
         <main className='container'>
             <Navbar />
                 <h1>My posts</h1>
+                
                 <AddPost savePost={addPost} />
+
                 {postList.map((post: Article) => (
                     <Post key={post.id} deletePost={deletePost} post={post} />
                 ))}
