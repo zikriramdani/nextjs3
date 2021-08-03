@@ -10,7 +10,7 @@ import { Article } from '../types'
 const BASE_URL: string = 'https://jsonplaceholder.typicode.com/posts'
 
 
-export default function IndexPage({
+export default function ArticlePage({
     posts,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
     const [postList, setPostList] = React.useState(posts)
