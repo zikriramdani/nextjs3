@@ -39,7 +39,7 @@ export default function Home(props) {
     return (
         <div className={styles.container}>
             <Head>
-                <title>Login - Create Next App</title>
+                <title>CRUD - Create Next App</title>
             </Head>
 
             <main className={styles.main}>
