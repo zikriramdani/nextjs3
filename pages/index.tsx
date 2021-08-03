@@ -4,24 +4,19 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import TableUser from '../components/TableUser';
 
-import { User } from '../types';
+import { connect } from 'react-redux'
 
-const BASE_URL: string = 'https://reqres.in/api/users';
+interface IProps {
+  announcementMessage: string
+  updateAnnouncement: any
+}
 
-export default function IndexPage({ users }: InferGetStaticPropsType<typeof getStaticProps>) {
-    const [userList, setUserList] = React.useState(users)
+interface IState {}
 
-    if (!userList) return <h1>Loading...</h1>
-
-    const deleteUser = async (id: number) => {
-        console.log('Delete ByID', id)
-        const users: User[] = userList.data.filter((user: User) => user.id !== id)
-        console.log(users)
-        setUserList(users)
-    }
-
-    return (
-        <main className='container'>
+class IndexPage extends React.Component<IProps, IState> {
+    render() {
+        return (
+            <main className='container'>
             <Navbar />
                 <div className="d-flex">
                     <div className="w-100 align-self-center"><h1>List User</h1></div>
@@ -36,7 +31,7 @@ export default function IndexPage({ users }: InferGetStaticPropsType<typeof getS
                     <TableUser key={user.id} user={user} deleteUser={deleteUser}  />
                 ))} */}
 
-                <TableUser>
+                {/* <TableUser>
                     <thead>
                         <tr>
                             <th scope="col" style={{width: '5%'}}>No</th>
@@ -67,20 +62,20 @@ export default function IndexPage({ users }: InferGetStaticPropsType<typeof getS
                             </tr>
                         ))}
                     </tbody>
-                </TableUser>
+                </TableUser> */}
                 
             <Footer />
         </main>
-    )
-};
-
-export async function getStaticProps() {
-    const res = await fetch(BASE_URL)
-    const users: User[] = await res.json()
-    
-    return {
-        props: {
-            users,
-        },
+        )
     }
 }
+
+const mapStateToProps = (state) => ({
+  announcementMessage: state.message,
+})
+
+const mapDispatchToProps = (dispatch) => ({
+//   updateAnnouncement: bindActionCreators(updateAnnouncement, dispatch)
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(IndexPage)

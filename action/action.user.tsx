@@ -6,6 +6,7 @@ const apiUrl = webConfig.baseUrl.baseUrlProd;
 export const getListUser = () => {
     return (dispatch, getState) => {
         axios.get(apiUrl).then((dataUser) => {
+            console.log('ad', dataUser)
             // if(dataUser.data) {
             //     dispatch(saveListUser(dataUser.data))
             // }
@@ -15,7 +16,7 @@ export const getListUser = () => {
 
 export const saveListUser =(payload) => {
     return {
-        type: 'load-revenue-report',
+        type: 'load-user',
         payload: payload
     };
 };

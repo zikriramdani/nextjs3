@@ -1,3 +1,6 @@
+import { User } from '../types/User'
+// import * as announcementActions from './actions'
+
 const initialState = [];
 
 export const userReducer = ( state = initialState, action ) => {
@@ -14,3 +17,5 @@ export const userReducer = ( state = initialState, action ) => {
             return state
 	}
 }
+
+export default userReducer
