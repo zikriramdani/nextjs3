@@ -1,12 +1,6 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux'
-import { composeWithDevTools } from 'redux-devtools-extension'
-import thunkMiddleware from 'redux-thunk'
-import {userReducer} from '../reducer/userReducer'
-// import { reducer as somethingReducer } from './states/something/reducer'
+import { userReducer } from '../reducer/userReducer';
+import { combineReducers } from 'redux';
 
-export const initStore = (initialState) => {
-  return createStore(combineReducers({
-    userReducer: userReducer,
-    // something: somethingReducer
-  }), initialState, composeWithDevTools(applyMiddleware(thunkMiddleware)))
-}
+export const rootReducer = combineReducers({
+    user: userReducer
+});
