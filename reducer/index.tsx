@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
-import { vuroxCompanyInfo } from './articles'
+import { vuroxUserInfo } from './user'
 
 const rootReducer = combineReducers({
-	company: vuroxCompanyInfo,
+	user: vuroxUserInfo
 })
 export default rootReducer;
