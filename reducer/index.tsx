@@ -1,7 +1,7 @@
-import { combineReducers } from 'redux'
-import { vuroxUserInfo } from './user'
+import { combineReducers } from 'redux';
+import { userReducer } from './user';
 
 const rootReducer = combineReducers({
-	user: vuroxUserInfo
+	user: userReducer
 })
 export default rootReducer;
