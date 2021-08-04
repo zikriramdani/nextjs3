@@ -11,6 +11,10 @@ class IndexPage extends Component {
 
     constructor(props) {
         super(props);
+
+        // this.state = {
+        //     dataUserList: [],
+        // }
     }
 
     componentDidMount() {
@@ -18,6 +22,7 @@ class IndexPage extends Component {
     }
 
     render() {
+        const userList = this.props.userList || []
         return (
             <main className='container'>
                 <Navbar />
@@ -30,11 +35,7 @@ class IndexPage extends Component {
                         </div>
                     </div>
 
-                    {/* {userList.data.map((user: User) => (
-                        <TableUser key={user.id} user={user} deleteUser={deleteUser}  />
-                    ))} */}
-
-                    {/* <TableUser>
+                    <TableUser>
                         <thead>
                             <tr>
                                 <th scope="col" style={{width: '5%'}}>No</th>
@@ -46,7 +47,7 @@ class IndexPage extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {userList.data.map((user: User, no) => (
+                            {userList.length > 0 ? userList.map((user, no) => (
                                 <tr className="align-baseline" key={user.id}>
                                     <td>
                                         {no+1}
@@ -58,14 +59,20 @@ class IndexPage extends Component {
                                     <td>{user.last_name}</td>
                                     <td>{user.email}</td>
                                     <td className="text-end">
-                                        <button className='Card__button' onClick={() => deleteUser(user.id)}>
+                                        {/* <button className='Card__button' onClick={() => deleteUser(user.id)}>
                                             Delete
-                                        </button>
+                                        </button> */}
                                     </td>
                                 </tr>
-                            ))}
+                            )) :
+                                <tr>
+                                    <td colSpan={6} className="text-center">
+                                        No data
+                                    </td>
+                                </tr>
+                            }
                         </tbody>
-                    </TableUser> */}
+                    </TableUser>
                     
                 <Footer />
             </main>
@@ -75,16 +82,15 @@ class IndexPage extends Component {
 
 //untuk baca state dari reducer
 const mapStateToProps = (state) => {
+    console.log('mapStateToProps', state.user.userList)
     return {
-        user: state.userList
+        userList: state.user.userList
     }
 }
 
 //untuk manggil method di action
-const mapDispatchToProps = (dispatch) => {
-    return {
-        getListUser: () => dispatch(getListUser())
-    };
-};
+const mapDispatchToProps = (dispatch) => ({
+    getListUser: () => dispatch(getListUser())
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(IndexPage)
