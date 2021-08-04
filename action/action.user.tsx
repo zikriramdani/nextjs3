@@ -4,7 +4,8 @@ import { webConfig } from '../config';
 const apiUrl = webConfig.baseUrl.baseUrlProd;
 
 export const getListUser = () => {
-    // return (dispatch) => {
+    console.log('actions', apiUrl)
+    return (dispatch) => {
         axios.get(apiUrl)
         .then(dataUser =>{
             console.log('actionss', dataUser.data)
@@ -12,7 +13,7 @@ export const getListUser = () => {
                 // dispatch(saveListUser(dataUser.data))
             // }
         })
-    // };
+    };
 };
 
 export const saveListUser =(payload) => {
