@@ -82,15 +82,18 @@ class IndexPage extends Component {
 
 //untuk baca state dari reducer
 const mapStateToProps = (state) => {
-    console.log('mapStateToProps', state.user.userList)
+    // console.log('mapStateToProps', state.user.userList)
     return {
         userList: state.user.userList
     }
 }
 
 //untuk manggil method di action
-const mapDispatchToProps = (dispatch) => ({
-    getListUser: () => dispatch(getListUser())
-})
+const mapDispatchToProps = (dispatch) => {
+    // console.log('mapDispatchToProps', dispatch)
+    return {
+        getListUser: () => dispatch(getListUser())
+    }
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(IndexPage)
