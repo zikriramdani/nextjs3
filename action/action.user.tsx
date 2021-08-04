@@ -7,13 +7,13 @@ export const getListUser = () => {
     console.log('actions')
     return (dispatch) => {
         axios.get(apiUrl)
-        .then(dataUser =>{
+        .then(dataUser => {
             console.log('actionss', dataUser.data)
             if(dataUser.data) {
                 dispatch(saveListUser(dataUser.data))
             }
         })
-    };
+    }
 };
 
 export const saveListUser =(payload) => {

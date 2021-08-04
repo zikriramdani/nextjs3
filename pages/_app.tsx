@@ -1,8 +1,7 @@
 import App from 'next/app';
-import {Provider} from 'react-redux';
-import React from 'react';
-import withRedux from "next-redux-wrapper";
 import store from '../store/store';
+import { Provider } from 'react-redux';
+import { createWrapper } from 'next-redux-wrapper';
 
 // add bootstrap css 
 import 'bootstrap/dist/css/bootstrap.css';
@@ -30,6 +29,7 @@ class MyApp extends App {
 
 //makeStore function that returns a new store for every request
 const makeStore = () => store;
+const wrapper = createWrapper(makeStore);
 
 //withRedux wrapper that passes the store to the App Component
-export default withRedux(makeStore)(MyApp);
+export default wrapper.withRedux(MyApp);
