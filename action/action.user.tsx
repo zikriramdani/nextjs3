@@ -16,9 +16,31 @@ export const getListUser = () => {
     }
 };
 
+// Create
+export const setAddUser = () => {
+	return {
+		type: 'set-add-user'
+	}
+}
+
+export const resetAddUser = () => {
+	return {
+		type: 'reset-add-user'
+	}
+}
+
+// Read
 export const saveListUser =(payload) => {
     return {
         type: 'load-user',
         payload: payload
     };
 };
+
+// Update
+export const saveUserEdit = (payload) => {
+	return {
+		type : 'load-user-edit',
+		payload: payload
+	}
+}
