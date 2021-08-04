@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import TableUser from '../components/TableUser';
 
+import store from '../store/store';
 import { getListUser } from '../action/action.user';
 
 class IndexPage extends Component {
@@ -14,7 +15,7 @@ class IndexPage extends Component {
     }
 
     componentDidMount() {
-        getListUser();
+        getListUser()(store.dispatch);
     }
 
     render() {
@@ -78,7 +79,7 @@ class IndexPage extends Component {
 
 //untuk baca state dari reducer
 const mapStateToProps = (state) => {
-    console.log('mapStateToProps', state)
+    // console.log('mapStateToProps', state)
     return {
         userList: state.user.userList
     }
@@ -86,7 +87,7 @@ const mapStateToProps = (state) => {
 
 //untuk manggil method di action
 const mapDispatchToProps = (dispatch) => {
-    console.log('mapDispatchToProps', dispatch)
+    // console.log('mapDispatchToProps', dispatch)
     return {
         getListUser: () => dispatch(getListUser())
     }

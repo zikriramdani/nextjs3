@@ -2,7 +2,6 @@ import App from 'next/app';
 import store from '../store/store';
 import { Provider } from 'react-redux';
 import { createWrapper } from 'next-redux-wrapper';
-import { PersistGate } from "redux-persist/integration/react";
 
 // add bootstrap css 
 import 'bootstrap/dist/css/bootstrap.css';
