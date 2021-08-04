@@ -1,11 +1,11 @@
 import App from 'next/app';
-import store from '../store/store';
+import useStore from '../store/store';
 import { Provider } from 'react-redux';
 import { createWrapper } from 'next-redux-wrapper';
 
 // add bootstrap css 
 import 'bootstrap/dist/css/bootstrap.css';
-import '../styles/index.css'
+import '../styles/index.css';
 
 class MyApp extends App {
     static async getInitialProps({Component, ctx}) {
@@ -16,8 +16,9 @@ class MyApp extends App {
     }
 
     render() {
+        const store = useStore;
         //Information that was returned  from 'getInitialProps' are stored in the props i.e. pageProps
-        const {Component, pageProps} = this.props;
+        const {Component, pageProps } = this.props;
 
         return (
             <Provider store={store}>
@@ -28,8 +29,8 @@ class MyApp extends App {
 }
 
 //makeStore function that returns a new store for every request
-const makeStore = () => store;
+const makeStore = () => useStore;
 const wrapper = createWrapper(makeStore);
 
-//withRedux wrapper that passes the store to the App Component
+// withRedux wrapper that passes the store to the App Component
 export default wrapper.withRedux(MyApp);
