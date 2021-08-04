@@ -5,7 +5,7 @@ type Props = {
     data: User
 }
 
-const TimeseriesChart: React.FC<Props> = ({ data }) => {
+const Timeseries: React.FC<Props> = ({ data }) => {
     return (
         <div className='mb-3'>
             Timeseries Chart {data.first_name}
@@ -13,4 +13,4 @@ const TimeseriesChart: React.FC<Props> = ({ data }) => {
     )
 }
 
-export default TimeseriesChart
+export default Timeseries

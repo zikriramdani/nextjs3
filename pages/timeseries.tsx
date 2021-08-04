@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import { connect } from 'react-redux';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import TimeseriesChart from '../components/TimeseriesChart';
+import TimeseriesChart from '../components/Timeseries';
 
 import store from '../store/store';
-import { getListUser } from '../action/action.user';
+import { getListTimeseries } from "../action/action.timeseries";
 
-class IndexPage extends Component {
+class TimeseriesPage extends Component {
     // const [userList, setUserList] = React.useState(posts)
 
     constructor(props) {
@@ -15,17 +15,19 @@ class IndexPage extends Component {
     }
 
     componentDidMount() {
-        getListUser()(store.dispatch);
+        // getListTimeseries();
+        getListTimeseries()(store.dispatch);
     }
 
     render() {
-        const userList = this.props.userList || []
+        // const timeseriesList = this.props.timeseriesList || []
         return (
             <main className='container'>
                 <Navbar />
-                    {userList.map((user, no) => (
-                        <TimeseriesChart key={user.id} data={user} />
-                    ))}
+                ahay
+                    {/* {timeseriesList.map((timeseries, no) => (
+                        <TimeseriesChart key={timeseries.id} data={timeseries} />
+                    ))} */}
                 <Footer />
             </main>
         )
@@ -36,7 +38,7 @@ class IndexPage extends Component {
 const mapStateToProps = (state) => {
     // console.log('mapStateToProps', state)
     return {
-        userList: state.user.userList
+        timeseriesList: state.timeseries.timeseriesList
     }
 }
 
@@ -44,8 +46,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     // console.log('mapDispatchToProps', dispatch)
     return {
-        getListUser: () => dispatch(getListUser())
+        getListTimeseries: () => dispatch(getListTimeseries())
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(IndexPage)
+export default connect(mapStateToProps, mapDispatchToProps)(TimeseriesPage)
