@@ -78,7 +78,7 @@ class IndexPage extends Component {
 
 //untuk baca state dari reducer
 const mapStateToProps = (state) => {
-    // console.log('mapStateToProps', state)
+    console.log('mapStateToProps', state)
     return {
         userList: state.user.userList
     }
@@ -86,7 +86,7 @@ const mapStateToProps = (state) => {
 
 //untuk manggil method di action
 const mapDispatchToProps = (dispatch) => {
-    // console.log('mapDispatchToProps', dispatch)
+    console.log('mapDispatchToProps', dispatch)
     return {
         getListUser: () => dispatch(getListUser())
     }

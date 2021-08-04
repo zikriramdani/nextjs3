@@ -1,6 +1,6 @@
 export const webConfig = {
 	baseUrl:{
-		baseUrlProd: 'https://reqres.in/api/users'
+		baseUrlProd: 'https://reqres.in/api/'
 	},
 	// headerParams:{
 	// 	partnercode: 24508,
