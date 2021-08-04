@@ -7,8 +7,12 @@ import TableUser from '../components/TableUser';
 import store from '../store/store';
 import { getListUser } from '../action/action.user';
 
+import { User } from '../types';
+import AddUser from '../components/AddUser'; // Component Add User
+
 class IndexPage extends Component {
-    static getInitialProps({store}) {}
+    // static getInitialProps({store}) {}
+    // const [userList, setUserList] = React.useState(posts)
 
     constructor(props) {
         super(props);
@@ -18,18 +22,33 @@ class IndexPage extends Component {
         getListUser()(store.dispatch);
     }
 
+    // Add User
+    addUser = async (e: React.FormEvent, formData: User) => {
+        e.preventDefault()
+        // const user: User = {
+        //     id: Math.random(),
+        //     first_name: formData.first_name,
+        //     last_name: formData.last_name,
+        // }
+        // setPostList([post, ...postList])
+    }
+
+    // Delete ByID
+    deleteUser = async (id: number) => {
+        // console.log('deleteUser', id)
+        const users: User[] = this.props.userList.filter((user: User) => user.id !== id)
+        console.log(users)
+        getListUser()(store.dispatch);
+        // setUserList(posts)
+    }
+
     render() {
         const userList = this.props.userList || []
         return (
             <main className='container'>
                 <Navbar />
-                    <div className="d-flex">
-                        <div className="w-100 align-self-center"><h1>List User</h1></div>
-                        <div className="flex-shrink-1">
-                            <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                                Add User
-                            </button>
-                        </div>
+                    <div className="mb-3">
+                        <AddUser saveUser={this.addUser} />
                     </div>
 
                     <TableUser>
@@ -52,9 +71,9 @@ class IndexPage extends Component {
                                     <td>{user.last_name}</td>
                                     <td>{user.email}</td>
                                     <td className="text-end">
-                                        {/* <button className='Card__button' onClick={() => deleteUser(user.id)}>
+                                        <button className='Card__button' onClick={() => this.deleteUser(user.id)}>
                                             Delete
-                                        </button> */}
+                                        </button>
                                     </td>
                                 </tr>
                             )) :
