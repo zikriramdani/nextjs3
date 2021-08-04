@@ -36,7 +36,6 @@ class IndexPage extends Component {
                         <thead>
                             <tr>
                                 <th scope="col" style={{width: '5%'}}>No</th>
-                                <th scope="col" style={{width: '15%'}}>Avatar</th>
                                 <th scope="col" style={{width: '15%'}}>First Name</th>
                                 <th scope="col" style={{width: '15%'}}>Last Name</th>
                                 <th scope="col" style={{width: '15%'}}>Email</th>
@@ -49,9 +48,6 @@ class IndexPage extends Component {
                                     <td>
                                         {no+1}
                                     </td>
-                                    <td>
-                                        <img src={user.avatar} width="50" />
-                                    </td>
                                     <td>{user.first_name}</td>
                                     <td>{user.last_name}</td>
                                     <td>{user.email}</td>
@@ -63,7 +59,7 @@ class IndexPage extends Component {
                                 </tr>
                             )) :
                                 <tr>
-                                    <td colSpan={6} className="text-center">
+                                    <td colSpan={5} className="text-center">
                                         No data
                                     </td>
                                 </tr>
