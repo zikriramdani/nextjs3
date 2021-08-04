@@ -12,7 +12,7 @@ class MyApp extends App {
         const pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {};
 
         //Anything returned here can be access by the client
-        return {pageProps: pageProps};
+        return { pageProps: pageProps };
     }
 
     render() {
