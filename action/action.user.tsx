@@ -4,8 +4,8 @@ import { webConfig } from '../config';
 const apiUrl = webConfig.baseUrl.baseUrlProd;
 
 export const getListUser = () => {
-    console.log('actions')
-    return (dispatch) => {
+    console.log('actionss')
+    return async dispatch => {
         axios.get(apiUrl)
         .then(dataUser => {
             console.log('actionss', dataUser.data)

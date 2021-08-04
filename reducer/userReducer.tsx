@@ -1,7 +1,9 @@
+import { HYDRATE } from "next-redux-wrapper";
 import { User } from '../types/User'
-// import * as announcementActions from './actions'
 
-const initialState = [];
+const initialState = {
+    userList: [],
+};
 
 export const userReducer = ( state = initialState, action ) => {
 	switch(action.type){
