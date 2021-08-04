@@ -25,12 +25,13 @@ class IndexPage extends Component {
     // Add User
     addUser = async (e: React.FormEvent, formData: User) => {
         e.preventDefault()
-        // const user: User = {
-        //     id: Math.random(),
-        //     first_name: formData.first_name,
-        //     last_name: formData.last_name,
-        // }
-        // setPostList([post, ...postList])
+        const user: User = {
+            id: Math.random(),
+            first_name: formData.first_name,
+            last_name: formData.last_name,
+        }
+        console.log('AddUser', user)
+        // setUserList([post, ...postList])
     }
 
     // Delete ByID
