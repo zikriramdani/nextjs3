@@ -24,7 +24,7 @@ class IndexPage extends Component {
             <main className='container'>
                 <Navbar />
                     {userList.map((user, no) => (
-                        <TimeseriesChart data={user} />
+                        <TimeseriesChart key={user.id} data={user} />
                     ))}
                 <Footer />
             </main>
