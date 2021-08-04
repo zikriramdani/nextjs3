@@ -11,7 +11,6 @@ import { User } from '../types';
 import AddUser from '../components/AddUser'; // Component Add User
 
 class IndexPage extends Component {
-    // static getInitialProps({store}) {}
     // const [userList, setUserList] = React.useState(posts)
 
     constructor(props) {
