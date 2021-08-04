@@ -1,5 +1,5 @@
 import App from 'next/app';
-import useStore from '../store/store';
+import store from '../store/store';
 import { Provider } from 'react-redux';
 import { createWrapper } from 'next-redux-wrapper';
 
@@ -16,7 +16,6 @@ class MyApp extends App {
     }
 
     render() {
-        const store = useStore;
         //Information that was returned  from 'getInitialProps' are stored in the props i.e. pageProps
         const {Component, pageProps } = this.props;
 
@@ -29,7 +28,7 @@ class MyApp extends App {
 }
 
 //makeStore function that returns a new store for every request
-const makeStore = () => useStore;
+const makeStore = () => store;
 const wrapper = createWrapper(makeStore);
 
 // withRedux wrapper that passes the store to the App Component
