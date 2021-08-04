@@ -36,7 +36,7 @@ class IndexPage extends Component {
 
     // Delete ByID
     deleteUser = async (id: number) => {
-        // console.log('deleteUser', id)
+        console.log('deleteUser', id)
         const users: User[] = this.props.userList.filter((user: User) => user.id !== id)
         console.log(users)
         getListUser()(store.dispatch);
