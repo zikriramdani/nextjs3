@@ -1,6 +1,3 @@
-import { HYDRATE } from "next-redux-wrapper";
-import { User } from '../types/User'
-
 const initialState = {
     addUser: true,
     userList: [],

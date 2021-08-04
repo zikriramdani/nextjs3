@@ -5,9 +5,9 @@ const apiUrl = webConfig.baseUrl.baseUrlProd;
 
 export const getListUser = () => {
     console.log('action.user')
-    return async (dispatch) => {
-        console.log('dispatch')
-        return axios.get(apiUrl).then(response => {
+    return (dispatch) => {
+        const url = apiUrl;
+        axios.get(url).then(response => {
             console.log('axios', response.data.data)
             if(response.data.data) {
                 dispatch(saveListUser(response.data.data))

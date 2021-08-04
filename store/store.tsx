@@ -21,4 +21,6 @@ const store = createStore(
     composeWithDevTools(applyMiddleware(thunkMiddleware))
 );
 
+// console.log('store', createStore(rootReducer))
+
 export default store;
