@@ -17,17 +17,17 @@ export const getListUser = () => {
 };
 
 // Create
-export const setAddUser = () => {
-	return {
-		type: 'set-add-user'
-	}
-}
+// export const setAddUser = () => {
+// 	return {
+// 		type: 'set-add-user'
+// 	}
+// }
 
-export const resetAddUser = () => {
-	return {
-		type: 'reset-add-user'
-	}
-}
+// export const resetAddUser = () => {
+// 	return {
+// 		type: 'reset-add-user'
+// 	}
+// }
 
 // Read
 export const saveListUser =(payload) => {
@@ -38,9 +38,9 @@ export const saveListUser =(payload) => {
 };
 
 // Update
-export const saveUserEdit = (payload) => {
-	return {
-		type : 'load-user-edit',
-		payload: payload
-	}
-}
+// export const saveUserEdit = (payload) => {
+// 	return {
+// 		type : 'load-user-edit',
+// 		payload: payload
+// 	}
+// }
