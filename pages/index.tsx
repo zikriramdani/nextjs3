@@ -4,17 +4,13 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import TableUser from '../components/TableUser';
 
-import { getListUser } from '../action/action.user'
+import { getListUser } from '../action/action.user';
 
 class IndexPage extends Component {
     static getInitialProps({store}) {}
 
     constructor(props) {
         super(props);
-
-        // this.state = {
-        //     dataUserList: [],
-        // }
     }
 
     componentDidMount() {
