@@ -8,7 +8,7 @@ export const userReducer = ( state = initialState, action ) => {
 		case 'load-user':
             state = {
                 ...state,
-                user: action.payload,
+                userList: action.payload,
             }
             return state
         case 'load-user-reset-data':
