@@ -1,14 +1,14 @@
 import * as React from 'react'
-import { Article } from '../types'
+import { User } from '../types'
 
 type Props = {
-    data: Article
+    data: User
 }
 
 const TimeseriesChart: React.FC<Props> = ({ data }) => {
     return (
         <div className='mb-3'>
-            Timeseries Chart
+            Timeseries Chart {data.first_name}
         </div>
     )
 }
