@@ -11,7 +11,12 @@ import { getListUser } from '../action/action.user';
 import { User } from '../types';
 import AddUser from '../components/AddUser'; // Component Add User
 
-class IndexPage extends Component {
+
+interface IUserProps {
+    userList: any [];
+}
+
+class IndexPage extends Component<IUserProps> {
     // const [userList, setUserList] = React.useState(posts)
 
     constructor(props) {
@@ -23,22 +28,23 @@ class IndexPage extends Component {
     }
 
     // Add User
-    addUser = async (e: React.FormEvent, formData: User) => {
-        e.preventDefault()
-        const user: User = {
-            id: Math.random(),
-            first_name: formData.first_name,
-            last_name: formData.last_name,
-            email: formData.email,
-        }
-        console.log('AddUser', user)
-        // setUserList([post, ...postList])
-    }
+    // addUser = async (e: React.FormEvent, formData: User) => {
+    //     e.preventDefault()
+    //     const user: User = {
+    //         id: Math.random(),
+    //         first_name: formData.first_name,
+    //         last_name: formData.last_name,
+    //         email: formData.email,
+    //     }
+    //     console.log('AddUser', user)
+    //     // setUserList([post, ...postList])
+    // }
 
     // Delete ByID
     deleteUser = async (id: number) => {
         console.log('deleteUser', id)
-        const users: User[] = this.props.userList.filter((user: User) => user.id !== id)
+        const userList = this.props.userList;
+        const users: User[] = userList.filter((user: User) => user.id !== id)
         console.log(users)
         getListUser()(store.dispatch);
         // setUserList(posts)
