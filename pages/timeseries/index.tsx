@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import Heads from '../components/Heads';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
-import TimeseriesChart from '../components/Timeseries';
+import Heads from '../../components/Heads';
+import Navbar from '../../components/Navbar';
+import Footer from '../../components/Footer';
+import TimeseriesChart from '../../components/Timeseries';
 
-import store from '../store/store';
-import { getListTimeseries } from "../action/action.timeseries";
+import store from '../../store/store';
+import { getListTimeseries } from "../../action/action.timeseries";
 
-class TimeseriesPage extends Component {
+class IndexPage extends Component {
     // const [userList, setUserList] = React.useState(posts)
 
     constructor(props) {
@@ -53,4 +53,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(TimeseriesPage)
+export default connect(mapStateToProps, mapDispatchToProps)(IndexPage)

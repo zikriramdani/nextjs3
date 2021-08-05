@@ -1,17 +1,17 @@
 import * as React from 'react';
-import Heads from '../components/Heads';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
+import Heads from '../../components/Heads';
+import Navbar from '../../components/Navbar';
+import Footer from '../../components/Footer';
 
 import { InferGetStaticPropsType } from 'next';
-import AddPost from '../components/AddPost';
-import Post from '../components/Post';
-import { Article } from '../types';
+import AddPost from '../../components/AddPost';
+import Post from '../../components/Post';
+import { Article } from '../../types';
 
 const BASE_URL: string = 'https://jsonplaceholder.typicode.com/posts';
 
 
-export default function ArticlePage({
+export default function IndexPage({
     posts,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
     const [postList, setPostList] = React.useState(posts)
