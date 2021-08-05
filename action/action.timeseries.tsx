@@ -3,7 +3,7 @@ import { webConfig } from '../config';
 
 const apiUrl = webConfig.baseUrl.baseUrlChart;
 
-var headers = {
+const headers = {
     'x-rapidapi-key': 'caa48952d3mshb095a26cccdcdbcp1e39bajsn6589c19645f9',
     'x-rapidapi-host': 'gold-price-live.p.rapidapi.com'
 }
