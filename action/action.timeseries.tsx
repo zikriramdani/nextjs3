@@ -13,14 +13,13 @@ export const getListTimeseries = () => {
     return (dispatch) => {
         // console.log('dispatch')
         return axios.get(apiUrl + 'get_metal_prices', {headers}).then(response => {
-            // console.log('axios', response)
+            console.log('axios', response)
             if(response.data) {
                 dispatch(saveListTimeseries(response.data))
             }
         })
         .catch(error => {
             console.log('error', error)
-            console.log('message: You have exceeded the DAILY quota for Requests on your current plan, BASIC. Upgrade your plan at https://rapidapi.com/ai-box-ai-box-default/api/gold-price-live',)
         })
     }
 };
