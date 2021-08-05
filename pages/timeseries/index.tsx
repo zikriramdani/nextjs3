@@ -8,9 +8,12 @@ import TimeseriesChart from '../../components/Timeseries';
 import store from '../../store/store';
 import { getListTimeseries } from "../../action/action.timeseries";
 
-class IndexPage extends Component {
-    // const [userList, setUserList] = React.useState(posts)
+interface ITimeseriesProps {
+    timeseriesListGold: number;
+    timeseriesListSilver: number;
+}
 
+class IndexPage extends Component<ITimeseriesProps> {
     constructor(props) {
         super(props);
     }
@@ -21,16 +24,32 @@ class IndexPage extends Component {
     }
 
     render() {
-        // const timeseriesList = this.props.timeseriesList || []
+        const timeseriesListGold = this.props.timeseriesListGold;
+        const timeseriesListSilver = this.props.timeseriesListSilver;
+        const dataTimeseriesChart = {
+            labels: ['gold', 'silver'],
+            datasets: [{
+                label: '# of Votes',
+                data: [ timeseriesListGold, timeseriesListSilver ],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)'
+                ],
+                borderWidth: 1
+            }]
+        }
+
         return (
             <main className='container'>
                 <Heads title="Timeseries Chart - Create Next App" />
 
                 <Navbar />
                     <h1>Ini adalah Halaman Timeseries Chart</h1>
-                    {/* {timeseriesList.map((timeseries, no) => (
-                        <TimeseriesChart key={timeseries.id} data={timeseries} />
-                    ))} */}
+                    <TimeseriesChart dataChart={dataTimeseriesChart} />
                 <Footer />
             </main>
         )
@@ -41,7 +60,8 @@ class IndexPage extends Component {
 const mapStateToProps = (state) => {
     // console.log('mapStateToProps', state)
     return {
-        timeseriesList: state.timeseries.timeseriesList
+        timeseriesListGold: state.timeseries.timeseriesList.gold,
+        timeseriesListSilver: state.timeseries.timeseriesList.silver
     }
 }
 
