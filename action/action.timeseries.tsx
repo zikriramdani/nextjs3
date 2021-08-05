@@ -13,7 +13,7 @@ export const getListTimeseries = () => {
     return (dispatch) => {
         // console.log('dispatch')
         return axios.get(apiUrl + 'get_metal_prices', {headers}).then(response => {
-            console.log('axios', response)
+            // console.log('axios', response)
             if(response.data) {
                 dispatch(saveListTimeseries(response.data))
             }
