@@ -48,6 +48,8 @@ class IndexPage extends Component {
         return (
             <main className='container'>
                 <Navbar />
+                    <h1>List User</h1>
+
                     {/* <div className="mb-3">
                         <AddUser saveUser={this.addUser} />
                     </div> */}

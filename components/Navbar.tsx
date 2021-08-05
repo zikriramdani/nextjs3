@@ -12,9 +12,9 @@ const Navbar: React.FC<Props> = ({}) => {
             <Link href="/timeseries">
                 <a className="nav-link text-white">Timeseries Chart</a>
             </Link>
-            {/* <Link href="/article">
+            <Link href="/article">
                 <a className="nav-link text-white">Article</a>
-            </Link> */}
+            </Link>
         </div>
     </nav>
   )
