@@ -18,6 +18,10 @@ export const getListTimeseries = () => {
                 dispatch(saveListTimeseries(response.data))
             }
         })
+        .catch(error => {
+            console.log('error', error)
+            console.log('message: You have exceeded the DAILY quota for Requests on your current plan, BASIC. Upgrade your plan at https://rapidapi.com/ai-box-ai-box-default/api/gold-price-live',)
+        })
     }
 };
 
