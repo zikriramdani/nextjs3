@@ -4,6 +4,7 @@ import Heads from '../../components/Heads';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import TimeseriesChart from '../../components/Timeseries';
+import ScatterChart from '../../components/ScatterChart';
 
 import store from '../../store/store';
 import { getListTimeseries } from "../../action/action.timeseries";
@@ -26,6 +27,8 @@ class IndexPage extends Component<ITimeseriesProps> {
     render() {
         const timeseriesListGold = this.props.timeseriesListGold;
         const timeseriesListSilver = this.props.timeseriesListSilver;
+
+        // Timeseries
         const dataTimeseriesChart = {
             labels: ['gold', 'silver'],
             datasets: [{
@@ -43,13 +46,43 @@ class IndexPage extends Component<ITimeseriesProps> {
             }]
         }
 
+        // Scatter Chart
+        const dataScatterChart = {
+            labels: ['Scatter'],
+            datasets: [
+                {
+                    label: 'My First dataset',
+                    fill: false,
+                    backgroundColor: 'rgba(75,192,192,0.4)',
+                    pointBorderColor: 'rgba(75,192,192,1)',
+                    pointBackgroundColor: '#fff',
+                    pointBorderWidth: 5,
+                    pointHoverRadius: 10,
+                    pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+                    pointHoverBorderColor: 'rgba(220,220,220,1)',
+                    pointHoverBorderWidth: 2,
+                    pointRadius: 1,
+                    pointHitRadius: 10,
+                    data: [
+                        { x: timeseriesListGold, y: timeseriesListGold },
+                        { x: timeseriesListSilver, y: timeseriesListSilver },
+                    ]
+                }
+            ]
+        };
+
         return (
             <main className='container'>
                 <Heads title="Timeseries Chart - Create Next App" />
 
                 <Navbar />
                     <h1>Ini adalah Halaman Timeseries Chart</h1>
+
                     <TimeseriesChart dataChart={dataTimeseriesChart} />
+
+                    <hr />
+                    <h1>Scatter Chart</h1>
+                    <ScatterChart dataChart={dataScatterChart} />
                 <Footer />
             </main>
         )
