@@ -48,9 +48,9 @@ class IndexPage extends Component {
         return (
             <main className='container'>
                 <Navbar />
-                    <div className="mb-3">
+                    {/* <div className="mb-3">
                         <AddUser saveUser={this.addUser} />
-                    </div>
+                    </div> */}
 
                     <TableUser>
                         <thead>
@@ -59,7 +59,7 @@ class IndexPage extends Component {
                                 <th scope="col" style={{width: '15%'}}>First Name</th>
                                 <th scope="col" style={{width: '15%'}}>Last Name</th>
                                 <th scope="col" style={{width: '15%'}}>Email</th>
-                                <th scope="col"></th>
+                                {/* <th scope="col"></th> */}
                             </tr>
                         </thead>
                         <tbody>
@@ -71,15 +71,15 @@ class IndexPage extends Component {
                                     <td>{user.first_name}</td>
                                     <td>{user.last_name}</td>
                                     <td>{user.email}</td>
-                                    <td className="text-end">
+                                    {/* <td className="text-end">
                                         <button className='Card__button' onClick={() => this.deleteUser(user.id)}>
                                             Delete
                                         </button>
-                                    </td>
+                                    </td> */}
                                 </tr>
                             )) :
                                 <tr>
-                                    <td colSpan={5} className="text-center">
+                                    <td colSpan={4} className="text-center">
                                         No data
                                     </td>
                                 </tr>
