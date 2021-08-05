@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
+import Heads from '../components/Heads';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import TableUser from '../components/TableUser';
@@ -47,6 +48,8 @@ class IndexPage extends Component {
         const userList = this.props.userList || []
         return (
             <main className='container'>
+                <Heads title="Home - Create Next App" />
+
                 <Navbar />
                     <h1>List User</h1>
 

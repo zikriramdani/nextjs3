@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
+import Heads from '../components/Heads';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import TimeseriesChart from '../components/Timeseries';
@@ -23,6 +24,8 @@ class TimeseriesPage extends Component {
         // const timeseriesList = this.props.timeseriesList || []
         return (
             <main className='container'>
+                <Heads title="Timeseries Chart - Create Next App" />
+
                 <Navbar />
                     <h1>Ini adalah Halaman Timeseries Chart</h1>
                     {/* {timeseriesList.map((timeseries, no) => (

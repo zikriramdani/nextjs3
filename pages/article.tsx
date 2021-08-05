@@ -1,13 +1,14 @@
-import * as React from 'react'
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
+import * as React from 'react';
+import Heads from '../components/Heads';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
-import { InferGetStaticPropsType } from 'next'
-import AddPost from '../components/AddPost'
-import Post from '../components/Post'
-import { Article } from '../types'
+import { InferGetStaticPropsType } from 'next';
+import AddPost from '../components/AddPost';
+import Post from '../components/Post';
+import { Article } from '../types';
 
-const BASE_URL: string = 'https://jsonplaceholder.typicode.com/posts'
+const BASE_URL: string = 'https://jsonplaceholder.typicode.com/posts';
 
 
 export default function ArticlePage({
@@ -35,6 +36,8 @@ export default function ArticlePage({
 
     return (
         <main className='container'>
+            <Heads title="Article - Create Next App" />
+
             <Navbar />
                 <h1>My posts</h1>
                 
