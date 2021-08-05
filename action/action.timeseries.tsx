@@ -9,7 +9,7 @@ const headers = {
 }
 
 export const getListTimeseries = () => {
-    console.log('action.timeseries')
+    // console.log('action.timeseries')
     return (dispatch) => {
         // console.log('dispatch')
         return axios.get(apiUrl + 'get_metal_prices', {headers}).then(response => {
