@@ -24,7 +24,7 @@ class TimeseriesPage extends Component {
         return (
             <main className='container'>
                 <Navbar />
-                ahay
+                    <h1>Ini adalah Halaman Timeseries Chart</h1>
                     {/* {timeseriesList.map((timeseries, no) => (
                         <TimeseriesChart key={timeseries.id} data={timeseries} />
                     ))} */}
