@@ -23,7 +23,7 @@ export const deleteUser = (userId) => {
 	return (dispatch) =>{
         console.log('dispatch deleteUser')
 		return axios.delete(apiUrl + 'users/' + userId).then(response => {
-            console.log('response', response)
+            // console.log('response', response)
 			if(response.status == 200){
 				dispatch(getListUser())
 			}

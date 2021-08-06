@@ -3,16 +3,17 @@ import { connect } from 'react-redux';
 import Heads from '../../components/Heads';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
-import TableUser from '../../components/TableUser';
+import TableUser from './components/TableUser';
 
 import store from '../../store/store';
 import { getListUser, deleteUser, } from '../../action/action.user';
 
 import { User } from '../../types';
-import AddUser from '../../components/AddUser'; // Component Add User
+import AddUser from './components/AddUser'; // Component Add User
 
 interface IUserProps {
     userList: any [];
+    deleteUser: any;
 }
 
 class IndexPage extends Component<IUserProps> {
@@ -20,8 +21,6 @@ class IndexPage extends Component<IUserProps> {
 
     constructor(props) {
         super(props);
-
-        // this.deleteUser = this.deleteUser.bind(this);
     }
 
     componentDidMount() {
@@ -43,13 +42,7 @@ class IndexPage extends Component<IUserProps> {
 
     // Delete ByID
     deleteUser = async (userId: number) => {
-        this.props.deleteUser(userId)
-        // console.log('deleteUser', id)
-        // const userList = this.props.userList;
-        // const users: User[] = userList.filter((user: User) => user.id !== id)
-        // console.log(users)
-        // getListUser()(store.dispatch);
-        // setUserList(posts)
+        this.props.deleteUser(userId);
     }
 
     render() {
