@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Article } from '../types'
+import { Article } from '../../../types'
 
 type Props = {
     savePost: (e: React.FormEvent, formData: Article) => void

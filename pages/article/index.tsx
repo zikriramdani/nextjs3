@@ -4,8 +4,8 @@ import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 
 import { InferGetStaticPropsType } from 'next';
-import AddPost from '../../components/AddPost';
-import Post from '../../components/Post';
+import AddPost from './components/AddPost';
+import Post from './components/Post';
 import { Article } from '../../types';
 
 const BASE_URL: string = 'https://jsonplaceholder.typicode.com/posts';
