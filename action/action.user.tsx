@@ -3,18 +3,33 @@ import { webConfig } from '../config';
 
 const apiUrl = webConfig.baseUrl.baseUrlProd;
 
+// Read
 export const getListUser = () => {
-    // console.log('action.user')
+    // console.log('action.user getListUser')
     return (dispatch) => {
-        // console.log('dispatch')
+        // console.log('dispatch getListUser')
         return axios.get(apiUrl + 'users').then(response => {
-            // console.log('axios', response.data.data)
-            if(response.data.data) {
-                dispatch(saveListUser(response.data.data))
+            // console.log('axios getListUser', response.data)
+            if(response.data) {
+                dispatch(saveListUser(response.data))
             }
         })
     }
 };
+
+// Delete
+export const deleteUser = (userId) => {
+    // console.log('action.user deleteUser')
+	return (dispatch) =>{
+        console.log('dispatch deleteUser')
+		return axios.delete(apiUrl + 'users/' + userId).then(response => {
+            console.log('response', response)
+			if(response.status == 200){
+				dispatch(getListUser())
+			}
+		})
+	}
+}
 
 // Create
 // export const setAddUser = () => {

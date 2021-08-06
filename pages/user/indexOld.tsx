@@ -6,7 +6,7 @@ import Footer from '../../components/Footer';
 import TableUser from '../../components/TableUser';
 
 import store from '../../store/store';
-import { getListUser, deleteUser, } from '../../action/action.user';
+import { getListUser } from '../../action/action.user';
 
 import { User } from '../../types';
 import AddUser from '../../components/AddUser'; // Component Add User
@@ -20,8 +20,6 @@ class IndexPage extends Component<IUserProps> {
 
     constructor(props) {
         super(props);
-
-        // this.deleteUser = this.deleteUser.bind(this);
     }
 
     componentDidMount() {
@@ -42,13 +40,12 @@ class IndexPage extends Component<IUserProps> {
     // }
 
     // Delete ByID
-    deleteUser = async (userId: number) => {
-        this.props.deleteUser(userId)
-        // console.log('deleteUser', id)
-        // const userList = this.props.userList;
-        // const users: User[] = userList.filter((user: User) => user.id !== id)
-        // console.log(users)
-        // getListUser()(store.dispatch);
+    deleteUser = async (id: number) => {
+        console.log('deleteUser', id)
+        const userList = this.props.userList;
+        const users: User[] = userList.filter((user: User) => user.id !== id)
+        console.log(users)
+        getListUser()(store.dispatch);
         // setUserList(posts)
     }
 
@@ -92,7 +89,7 @@ class IndexPage extends Component<IUserProps> {
                                 </tr>
                             )) :
                                 <tr>
-                                    <td colSpan={6} className="text-center">
+                                    <td colSpan={4} className="text-center">
                                         No data
                                     </td>
                                 </tr>
@@ -118,8 +115,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     // console.log('mapDispatchToProps', dispatch)
     return {
-        getListUser: () => dispatch(getListUser()), // Read
-        deleteUser: (userId) => dispatch(deleteUser(userId)) // Delete
+        getListUser: () => dispatch(getListUser())
     }
 }
 
