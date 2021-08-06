@@ -9,13 +9,16 @@ import Tables from '../../components/Tables';
 import Modals from '../../components/Modals';
 
 import store from '../../store/store';
-import { getListUser, deleteUser, } from '../../action/action.user';
+import { addUser, getListUser, updateUser, deleteUser } from '../../action/action.user';
 
 import { User } from '../../types';
 import AddUser from './components/AddUser'; // Component Add User
+import EditUser from './components/AddUser'; // Component Edit User
 
 interface IUserProps {
+    addUser: any;
     userList: any [];
+    updateUser: any;
     deleteUser: any;
 }
 
@@ -24,9 +27,11 @@ class IndexPage extends Component<IUserProps> {
         super(props);
 
         this.state = {
-            editUser: false, // Edit
+            // messages: null,
+            editUser: false, // Modal Edit
 
             // Data Modal Edit
+            userId: null,
             first_name: null,
             last_name: null,
             email: null,
@@ -42,24 +47,25 @@ class IndexPage extends Component<IUserProps> {
     }
 
     // Add User
-    // addUser = async (e: React.FormEvent, formData: User) => {
-    //     e.preventDefault()
-    //     const user: User = {
-    //         id: Math.random(),
-    //         first_name: formData.first_name,
-    //         last_name: formData.last_name,
-    //         email: formData.email,
-    //     }
-    //     console.log('AddUser', user)
-    //     // setUserList([post, ...postList])
-    // }
+    addUser = async (e: React.FormEvent, formData: User) => {
+        e.preventDefault()
+        const payload: User = {
+            id: Math.random(),
+            first_name: formData.first_name,
+            last_name: formData.last_name,
+            email: formData.email,
+        }
+        // console.log('AddUser', payload)
+        this.props.addUser(payload);
+    }
 
-    
     // Modal Edit
-    editUser(user)  {
-        console.log('editUser', user)
+    editUser = async (user) => {
+        // console.log('editUser', user)
         this.setState({
             editUser: true,
+
+            userId: user.id,
             first_name: user.first_name,
             last_name: user.last_name,
             email: user.email
@@ -71,9 +77,23 @@ class IndexPage extends Component<IUserProps> {
         });
     }
 
+    // Handle Form Edit
+    handleChange(key, val){
+		this.setState({
+			[key]: val
+		})
+	}
+
     // Update
     updateUser() {
-        console.log('update')
+        const reqPayload = new FormData();
+        reqPayload.append('id', this.state.userId)
+		reqPayload.append('first_name', this.state.first_name)
+        reqPayload.append('last_name', this.state.last_name)
+        reqPayload.append('email', this.state.email)
+
+        console.log('update', reqPayload);
+        this.props.updateUser(reqPayload)
     }
 
     // Delete ByID
@@ -90,10 +110,10 @@ class IndexPage extends Component<IUserProps> {
                 <Navbar />
                     <h1>List User</h1>
 
-                    {/* <div className="mb-3">
+                    <div className="mb-3">
                         <AddUser saveUser={this.addUser} />
-                    </div> */}
-
+                    </div>
+                    
                     <Tables>
                         <thead>
                             <tr>
@@ -138,26 +158,22 @@ class IndexPage extends Component<IUserProps> {
                     onHide={this.editUserClose} 
                     title="Edit User"
                     content={
-                            <Row>
-                                <Col md={12}>
-                                    <div className="form-group">
-                                        <label className="form-label">First Name</label>
-                                        <input className="form-control" disabled value={this.state.first_name} />
-                                    </div>
-                                </Col>
-                                <Col md={12}>
-                                    <div className="form-group">
-                                        <label className="form-label">Last Name</label>
-                                        <input className="form-control" disabled value={this.state.last_name} />
-                                    </div>
-                                </Col>
-                                <Col md={12}>
-                                    <div className="form-group">
-                                        <label className="form-label">Email</label>
-                                        <input className="form-control" disabled value={this.state.email} />
-                                    </div>
-                                </Col>
-                            </Row>
+                        <form>
+                            <div>
+                                <div className='Form--field w-100'>
+                                    <label htmlFor='first_name'>First Name</label>
+                                    <input onChange={e => this.handleChange('first_name', e.target.value)} value={this.state.first_name} id='first_name' />
+                                </div>
+                                <div className='Form--field w-100'>
+                                    <label htmlFor='last_name'>Last Name</label>
+                                    <input onChange={e => this.handleChange('last_name', e.target.value)} value={this.state.last_name} id='last_name' />
+                                </div>
+                                <div className='Form--field w-100'>
+                                    <label htmlFor='email'>Email</label>
+                                    <input onChange={e => this.handleChange('email', e.target.value)} value={this.state.email} id='email' />
+                                </div>
+                            </div>
+                        </form>
                     }
                     button={
                         <Button variant="secondary" onClick={() => this.updateUser()}>
@@ -184,7 +200,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     // console.log('mapDispatchToProps', dispatch)
     return {
+        addUser: (payload) => dispatch(addUser(payload)), // Update
         getListUser: () => dispatch(getListUser()), // Read
+        updateUser: (payload) => dispatch(updateUser(payload)), // Update
         deleteUser: (userId) => dispatch(deleteUser(userId)) // Delete
     }
 }

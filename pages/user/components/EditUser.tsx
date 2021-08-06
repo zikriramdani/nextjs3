@@ -2,10 +2,14 @@ import * as React from 'react'
 import { User } from '../../../types'
 
 type Props = {
-    saveUser: (e: React.FormEvent, formData: User) => void
+    updateUser: (e: React.FormEvent, formData: User) => void;
+
+    first_name: null;
+    last_name: null;
+    email: null;
 }
 
-const AddUser: React.FC<Props> = ({ saveUser }) => {
+const EditUser: React.FC<Props> = ({ updateUser, first_name, last_name, email }) => {
     const [formData, setFormData] = React.useState<User>()
 
     const handleForm = (e: React.FormEvent<HTMLInputElement>): void => {
@@ -16,26 +20,26 @@ const AddUser: React.FC<Props> = ({ saveUser }) => {
     }
 
     return (
-        <form className='Form' onSubmit={(e) => saveUser(e, formData)}>
+        <form className='Form' onSubmit={(e) => updateUser(e, formData)}>
             <div>
-                <div className='Form--field'>
+                <div className='Form--field w-100'>
                     <label htmlFor='first_name'>First Name</label>
-                    <input onChange={handleForm} type='text' id='first_name' />
+                    <input onChange={handleForm} value={first_name} type='text' id='first_name' />
                 </div>
-                <div className='Form--field'>
+                <div className='Form--field w-100'>
                     <label htmlFor='last_name'>Last Name</label>
-                    <input onChange={handleForm} type='text' id='last_name' />
+                    <input onChange={handleForm} value={last_name} type='text' id='last_name' />
                 </div>
-                <div className='Form--field'>
+                <div className='Form--field w-100'>
                     <label htmlFor='email'>Email</label>
-                    <input onChange={handleForm} type='email' id='email' />
+                    <input onChange={handleForm} value={email} type='text' id='email' />
                 </div>
             </div>
             <button className='Form__button' disabled={formData === undefined ? true : false}>
-                Add User
+                Update
             </button>
         </form>
     )
 }
 
-export default AddUser
+export default EditUser

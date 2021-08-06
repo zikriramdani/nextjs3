@@ -3,6 +3,20 @@ import { webConfig } from '../config';
 
 const apiUrl = webConfig.baseUrl.baseUrlProd;
 
+// Delete
+export const addUser = (payload) => {
+    // console.log('action.user addUser')
+	return (dispatch) =>{
+        // console.log('dispatch updateUser', payload)
+		return axios.post(apiUrl + 'users', payload).then(response => {
+            // console.log('response', response)
+			if(response){
+				dispatch(getListUser())
+			}
+		})
+	}
+}
+
 // Read
 export const getListUser = () => {
     // console.log('action.user getListUser')
@@ -18,13 +32,27 @@ export const getListUser = () => {
 };
 
 // Delete
+export const updateUser = (payload) => {
+    console.log('action.user updateUser', payload)
+	return (dispatch) =>{
+        console.log('dispatch updateUser', payload)
+		// return axios.put(apiUrl + 'users/' + userId).then(response => {
+        //     // console.log('response', response)
+		// 	if(response.status == 200){
+		// 		dispatch(getListUser())
+		// 	}
+		// })
+	}
+}
+
+// Delete
 export const deleteUser = (userId) => {
     // console.log('action.user deleteUser')
 	return (dispatch) =>{
-        console.log('dispatch deleteUser')
+        // console.log('dispatch deleteUser')
 		return axios.delete(apiUrl + 'users/' + userId).then(response => {
             // console.log('response', response)
-			if(response.status == 200){
+			if(response){
 				dispatch(getListUser())
 			}
 		})
