@@ -149,7 +149,7 @@ class IndexPage extends React.Component<IUserProps, MyState> {
                                     <td>{user.last_name}</td>
                                     <td>{user.email}</td>
                                     <td className="text-end">
-                                        <div className='d-flex'>
+                                        <div className='d-flex justify-content-end'>
                                             <Button className='btn btn-warning me-3' onClick={() => this.editUser(user)}>
                                                 Edit
                                             </Button>
