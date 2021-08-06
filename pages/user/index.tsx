@@ -22,7 +22,15 @@ interface IUserProps {
     deleteUser: any;
 }
 
-class IndexPage extends Component<IUserProps> {
+interface MyState {
+    editUser: any;
+    userId: string;
+    first_name: string;
+    last_name: string;
+    email: string;
+}
+
+class IndexPage extends React.Component<IUserProps, MyState> {
 
     constructor(props) {
         super(props);
@@ -32,10 +40,10 @@ class IndexPage extends Component<IUserProps> {
             editUser: false, // Modal Edit
 
             // Data Modal Edit
-            userId: null,
-            first_name: null,
-            last_name: null,
-            email: null,
+            userId: '',
+            first_name: '',
+            last_name: '',
+            email: '',
         }
 
         // Modal Edit
@@ -81,9 +89,11 @@ class IndexPage extends Component<IUserProps> {
     // Handle Form Edit
     handleChange = event => {
         // This triggers everytime the input is changed
-        this.setState({
-            [event.target.name]: event.target.value,
-        });
+        if (event.target.files) {
+            this.setState({ ...this.state, [event.target.name]: event.target.files[0] });
+        } else {
+            this.setState({ ...this.state, [event.target.name]: event.target.value });
+        }
     };
 
     // Update

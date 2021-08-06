@@ -5,16 +5,15 @@ import { Modal } from "react-bootstrap";
 type Props = {
     show: any;
     onHide: any;
-    size: any;
 
     title: any;
     content: any;
-    button: any;
+    // button: any;
 }
 
-const Modals: React.FC<Props> = ({ show, onHide, size, title, content, button }) => {
+const Modals: React.FC<Props> = ({ show, onHide, title, content }) => {
     return (
-        <Modal show={show} onHide={onHide} animation={false} backdrop="static" keyboard={false} size={size} aria-labelledby="contained-modal-title-vcenter" >
+        <Modal show={show} onHide={onHide} animation={false} backdrop="static" keyboard={false} aria-labelledby="contained-modal-title-vcenter" >
             <Modal.Header closeButton>
                 <Modal.Title>
                     {title}
@@ -24,7 +23,7 @@ const Modals: React.FC<Props> = ({ show, onHide, size, title, content, button })
                 {content}
             </Modal.Body>
             <Modal.Footer>
-                {button}
+                {/* {button} */}
             </Modal.Footer>
         </Modal>
     );
