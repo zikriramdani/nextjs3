@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
+import { Row, Col, Button } from "react-bootstrap";
+
 import Heads from '../../components/Heads';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
-import TableUser from './components/TableUser';
+import Tables from '../../components/Tables';
+import Modals from '../../components/Modals';
 
 import store from '../../store/store';
 import { getListUser, deleteUser, } from '../../action/action.user';
@@ -17,10 +20,21 @@ interface IUserProps {
 }
 
 class IndexPage extends Component<IUserProps> {
-    // const [userList, setUserList] = React.useState(posts)
-
     constructor(props) {
         super(props);
+
+        this.state = {
+            editUser: false, // Edit
+
+            // Data Modal Edit
+            first_name: null,
+            last_name: null,
+            email: null,
+        }
+
+        // Modal Edit
+        this.editUser = this.editUser.bind(this);
+        this.editUserClose = this.editUserClose.bind(this);
     }
 
     componentDidMount() {
@@ -40,6 +54,28 @@ class IndexPage extends Component<IUserProps> {
     //     // setUserList([post, ...postList])
     // }
 
+    
+    // Modal Edit
+    editUser(user)  {
+        console.log('editUser', user)
+        this.setState({
+            editUser: true,
+            first_name: user.first_name,
+            last_name: user.last_name,
+            email: user.email
+        });
+    }
+    editUserClose = event =>  {
+        this.setState({
+            editUser: false
+        });
+    }
+
+    // Update
+    updateUser() {
+        console.log('update')
+    }
+
     // Delete ByID
     deleteUser = async (userId: number) => {
         this.props.deleteUser(userId);
@@ -58,7 +94,7 @@ class IndexPage extends Component<IUserProps> {
                         <AddUser saveUser={this.addUser} />
                     </div> */}
 
-                    <TableUser>
+                    <Tables>
                         <thead>
                             <tr>
                                 <th scope="col" style={{width: '5%'}}>No</th>
@@ -78,9 +114,13 @@ class IndexPage extends Component<IUserProps> {
                                     <td>{user.last_name}</td>
                                     <td>{user.email}</td>
                                     <td className="text-end">
-                                        <button className='Card__button' onClick={() => this.deleteUser(user.id)}>
+                                        <Button className='btn btn-warning me-3' onClick={() => this.editUser(user)}>
+                                            Edit
+                                        </Button>
+
+                                        <Button className="btn btn-danger" onClick={() => this.deleteUser(user.id)}>
                                             Delete
-                                        </button>
+                                        </Button>
                                     </td>
                                 </tr>
                             )) :
@@ -91,7 +131,40 @@ class IndexPage extends Component<IUserProps> {
                                 </tr>
                             }
                         </tbody>
-                    </TableUser>
+                    </Tables>
+
+                    {/* Modal Edit */}
+                    <Modals show={this.state.editUser} 
+                    onHide={this.editUserClose} 
+                    title="Edit User"
+                    content={
+                            <Row>
+                                <Col md={12}>
+                                    <div className="form-group">
+                                        <label className="form-label">First Name</label>
+                                        <input className="form-control" disabled value={this.state.first_name} />
+                                    </div>
+                                </Col>
+                                <Col md={12}>
+                                    <div className="form-group">
+                                        <label className="form-label">Last Name</label>
+                                        <input className="form-control" disabled value={this.state.last_name} />
+                                    </div>
+                                </Col>
+                                <Col md={12}>
+                                    <div className="form-group">
+                                        <label className="form-label">Email</label>
+                                        <input className="form-control" disabled value={this.state.email} />
+                                    </div>
+                                </Col>
+                            </Row>
+                    }
+                    button={
+                        <Button variant="secondary" onClick={() => this.updateUser()}>
+                            Update
+                        </Button>
+                    }
+                    />
                     
                 <Footer />
             </main>

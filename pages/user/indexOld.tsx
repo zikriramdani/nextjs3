@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Heads from '../../components/Heads';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
-import TableUser from './components/TableUser';
+import TableUser from '../../components/Tables';
 
 import store from '../../store/store';
 import { getListUser } from '../../action/action.user';
