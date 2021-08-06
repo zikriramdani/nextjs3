@@ -23,6 +23,7 @@ interface IUserProps {
 }
 
 class IndexPage extends Component<IUserProps> {
+
     constructor(props) {
         super(props);
 
@@ -86,14 +87,18 @@ class IndexPage extends Component<IUserProps> {
 
     // Update
     updateUser() {
+        // console.log('e', event.preventDefault())
         const reqPayload = new FormData();
-        reqPayload.append('id', this.state.userId)
-		reqPayload.append('first_name', this.state.first_name)
+        reqPayload.append('id', this.state.userId);
+		reqPayload.append('first_name', this.state.first_name);
         reqPayload.append('last_name', this.state.last_name)
         reqPayload.append('email', this.state.email)
 
         console.log('update', reqPayload);
         this.props.updateUser(reqPayload)
+        this.setState({
+            editUser: false
+        });
     }
 
     // Delete ByID
@@ -158,22 +163,20 @@ class IndexPage extends Component<IUserProps> {
                     onHide={this.editUserClose} 
                     title="Edit User"
                     content={
-                        <form>
-                            <div>
-                                <div className='Form--field w-100'>
-                                    <label htmlFor='first_name'>First Name</label>
-                                    <input onChange={e => this.handleChange('first_name', e.target.value)} value={this.state.first_name} id='first_name' />
-                                </div>
-                                <div className='Form--field w-100'>
-                                    <label htmlFor='last_name'>Last Name</label>
-                                    <input onChange={e => this.handleChange('last_name', e.target.value)} value={this.state.last_name} id='last_name' />
-                                </div>
-                                <div className='Form--field w-100'>
-                                    <label htmlFor='email'>Email</label>
-                                    <input onChange={e => this.handleChange('email', e.target.value)} value={this.state.email} id='email' />
-                                </div>
+                        <div>
+                            <div className='Form--field w-100'>
+                                <label htmlFor='first_name'>First Name</label>
+                                <input value={this.state.first_name} onChange={e => this.handleChange('first_name', e.target.value)} id='first_name' />
                             </div>
-                        </form>
+                            <div className='Form--field w-100'>
+                                <label htmlFor='last_name'>Last Name</label>
+                                <input value={this.state.last_name} onChange={e => this.handleChange('last_name', e.target.value)} id='last_name' />
+                            </div>
+                            <div className='Form--field w-100'>
+                                <label htmlFor='email'>Email</label>
+                                <input value={this.state.email}  onChange={e => this.handleChange('email', e.target.value)} id='email' />
+                            </div>
+                        </div>
                     }
                     button={
                         <Button variant="secondary" onClick={() => this.updateUser()}>
