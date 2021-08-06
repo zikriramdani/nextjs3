@@ -33,15 +33,16 @@ export const getListUser = () => {
 
 // Delete
 export const updateUser = (payload) => {
-    console.log('action.user updateUser', payload)
+    // console.log('action.user updateUser', payload)
 	return (dispatch) =>{
-        console.log('dispatch updateUser', payload)
-		// return axios.put(apiUrl + 'users/' + userId).then(response => {
-        //     // console.log('response', response)
-		// 	if(response.status == 200){
-		// 		dispatch(getListUser())
-		// 	}
-		// })
+        // console.log('dispatch updateUser', payload)
+        const userId = payload.id;
+		return axios.put(apiUrl + 'users/' + userId, payload).then(response => {
+            // console.log('response', response)
+			if(response){
+				dispatch(getListUser())
+			}
+		})
 	}
 }
 

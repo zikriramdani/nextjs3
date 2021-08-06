@@ -79,23 +79,23 @@ class IndexPage extends Component<IUserProps> {
     }
 
     // Handle Form Edit
-    handleChange(key, val){
-		this.setState({
-			[key]: val
-		})
-	}
+    handleChange = event => {
+        // This triggers everytime the input is changed
+        this.setState({
+            [event.target.name]: event.target.value,
+        });
+    };
 
     // Update
-    updateUser() {
-        // console.log('e', event.preventDefault())
-        const reqPayload = new FormData();
-        reqPayload.append('id', this.state.userId);
-		reqPayload.append('first_name', this.state.first_name);
-        reqPayload.append('last_name', this.state.last_name)
-        reqPayload.append('email', this.state.email)
+    updateUser = event => {
+        const payload = {
+            id : this.state.userId,
+            first_name : this.state.first_name,
+            last_name : this.state.last_name,
+            email : this.state.email
+        }
 
-        console.log('update', reqPayload);
-        this.props.updateUser(reqPayload)
+        this.props.updateUser(payload)
         this.setState({
             editUser: false
         });
@@ -163,28 +163,25 @@ class IndexPage extends Component<IUserProps> {
                     onHide={this.editUserClose} 
                     title="Edit User"
                     content={
-                        <div>
+                        <form onSubmit={this.updateUser} >
                             <div className='Form--field w-100'>
                                 <label htmlFor='first_name'>First Name</label>
-                                <input value={this.state.first_name} onChange={e => this.handleChange('first_name', e.target.value)} id='first_name' />
+                                <input id='first_name' name='first_name' value={this.state.first_name} onChange={this.handleChange} />
                             </div>
                             <div className='Form--field w-100'>
                                 <label htmlFor='last_name'>Last Name</label>
-                                <input value={this.state.last_name} onChange={e => this.handleChange('last_name', e.target.value)} id='last_name' />
+                                <input id='last_name' name='last_name' value={this.state.last_name} onChange={this.handleChange} />
                             </div>
                             <div className='Form--field w-100'>
                                 <label htmlFor='email'>Email</label>
-                                <input value={this.state.email}  onChange={e => this.handleChange('email', e.target.value)} id='email' />
+                                <input type="email" id='email' name='email' value={this.state.email}  onChange={this.handleChange} />
                             </div>
-                        </div>
-                    }
-                    button={
-                        <Button variant="secondary" onClick={() => this.updateUser()}>
-                            Update
-                        </Button>
+                            <Button type="submit" className='Form__button'>
+                                Update
+                            </Button>
+                        </form>
                     }
                     />
-                    
                 <Footer />
             </main>
         )
