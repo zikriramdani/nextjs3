@@ -149,13 +149,15 @@ class IndexPage extends React.Component<IUserProps, MyState> {
                                     <td>{user.last_name}</td>
                                     <td>{user.email}</td>
                                     <td className="text-end">
-                                        <Button className='btn btn-warning me-3' onClick={() => this.editUser(user)}>
-                                            Edit
-                                        </Button>
+                                        <div className='d-flex'>
+                                            <Button className='btn btn-warning me-3' onClick={() => this.editUser(user)}>
+                                                Edit
+                                            </Button>
 
-                                        <Button className="btn btn-danger" onClick={() => this.deleteUser(user.id)}>
-                                            Delete
-                                        </Button>
+                                            <Button className="btn btn-danger" onClick={() => this.deleteUser(user.id)}>
+                                                Delete
+                                            </Button>
+                                        </div>
                                     </td>
                                 </tr>
                             )) :
