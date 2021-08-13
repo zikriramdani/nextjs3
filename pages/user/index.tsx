@@ -31,6 +31,10 @@ interface MyState {
 
     // Search
     nameSearch: string;
+
+    // Pagination
+    currentPage: any;
+    userPerpage: any;
 }
 
 class IndexPage extends React.Component<IUserProps, MyState> {
@@ -49,7 +53,11 @@ class IndexPage extends React.Component<IUserProps, MyState> {
             email: '',
 
             // Search
-            nameSearch: ''
+            nameSearch: '',
+
+            // Pagination
+            currentPage: 1,
+            userPerpage: 10
         }
 
         // Modal Edit
@@ -131,7 +139,6 @@ class IndexPage extends React.Component<IUserProps, MyState> {
         // console.log('handleChangeSearch', event.target.value)
         getListUser(this.state.nameSearch)(store.dispatch);
     };
-
     resetSearch = event => {
         if(event.target.value == '' || event.target.value == ' ') {
             // console.log('resetsearch', event.target.value)
@@ -140,7 +147,16 @@ class IndexPage extends React.Component<IUserProps, MyState> {
     }
 
     render() {
-        const userList = this.props.userList || []
+        const userList = this.props.userList || [];
+
+        // Pagination
+        const indexOfLastUser = this.state.currentPage * this.state.userPerpage;
+        const indexOfFirstUser = indexOfLastUser - this.state.userPerpage;
+        const currentUser = userList.slice(indexOfFirstUser, indexOfLastUser);
+        const paginate = pageNum => this.setState({ currentPage: pageNum });
+        const prevPage = () => this.setState({ currentPage: this.state.currentPage - 1 })
+        const nextPage = () => this.setState({ currentPage: this.state.currentPage + 1 })
+
         return (
             <main className='container'>
                 <Heads title="Home - Create Next App" />
@@ -161,7 +177,7 @@ class IndexPage extends React.Component<IUserProps, MyState> {
                     <Tables>
                         <thead>
                             <tr>
-                                <th scope="col" style={{width: '5%'}}>No</th>
+                                {/* <th scope="col" style={{width: '5%'}}>No</th> */}
                                 <th scope="col" style={{width: '15%'}}>First Name</th>
                                 <th scope="col" style={{width: '15%'}}>Last Name</th>
                                 <th scope="col" style={{width: '15%'}}>Email</th>
@@ -169,11 +185,11 @@ class IndexPage extends React.Component<IUserProps, MyState> {
                             </tr>
                         </thead>
                         <tbody>
-                            {userList.length > 0 ? userList.map((user, no) => (
+                            {userList.length > 0 ? currentUser.map((user, no) => (
                                 <tr className="align-baseline" key={user.id}>
-                                    <td>
+                                    {/* <td>
                                         {no+1}
-                                    </td>
+                                    </td> */}
                                     <td>{user.first_name}</td>
                                     <td>{user.last_name}</td>
                                     <td>{user.email}</td>
@@ -199,8 +215,8 @@ class IndexPage extends React.Component<IUserProps, MyState> {
                         </tbody>
                     </Tables>
                     
-                    <div className="mb-3">
-                        <Paginations />
+                    <div className="d-flex justify-content-center mb-3">
+                        <Paginations userPerpage={this.state.userPerpage} totalUser={userList.length} paginate={paginate} prevPage={prevPage} nextPage={nextPage} />
                     </div>
                     
 
