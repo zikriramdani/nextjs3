@@ -3,7 +3,7 @@ import { webConfig } from '../config';
 
 const apiUrl = webConfig.baseUrl.baseUrlProd;
 
-// Delete
+// Create
 export const addUser = (payload) => {
     // console.log('action.user addUser')
 	return (dispatch) =>{
@@ -31,7 +31,7 @@ export const getListUser = () => {
     }
 };
 
-// Delete
+// Update
 export const updateUser = (payload) => {
     // console.log('action.user updateUser', payload)
 	return (dispatch) =>{
