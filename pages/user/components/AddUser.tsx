@@ -6,7 +6,7 @@ type Props = {
     saveUser: (e: React.FormEvent, formData: User) => void
 }
 
-const AddUser: React.FC<Props> = ({ saveUser }) => {
+const AddUser: React.FC<Props> = ({ saveUser}) => {
     const [formData, setFormData] = React.useState<User>()
 
     const handleForm = (e: React.FormEvent<HTMLInputElement>): void => {

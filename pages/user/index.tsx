@@ -80,6 +80,7 @@ class IndexPage extends React.Component<IUserProps, MyState> {
         }
         // console.log('AddUser', payload)
         this.props.addUser(payload);
+        e.target.reset();
     }
 
     // Modal Edit
@@ -216,7 +217,7 @@ class IndexPage extends React.Component<IUserProps, MyState> {
                             </tbody>
                         </Tables>
                     </div>
-                    
+
                     <div className="d-flex justify-content-center mb-3">
                         <Paginations userPerpage={this.state.userPerpage} totalUser={userList.length} paginate={paginate} prevPage={prevPage} nextPage={nextPage} />
                     </div>
