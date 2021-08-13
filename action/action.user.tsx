@@ -22,7 +22,7 @@ export const getListUser = () => {
     // console.log('action.user getListUser')
     return (dispatch) => {
         // console.log('dispatch getListUser')
-        return axios.get(apiUrl + 'users').then(response => {
+        return axios.get(apiUrl + 'users?sortBy=id&order=desc').then(response => {
             // console.log('axios getListUser', response.data)
             if(response.data) {
                 dispatch(saveListUser(response.data))
