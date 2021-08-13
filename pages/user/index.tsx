@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import { Row, Col, Button, Form } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 
 import Heads from '../../components/Heads';
 import Navbar from '../../components/Navbar';
@@ -206,15 +206,15 @@ class IndexPage extends React.Component<IUserProps, MyState> {
                         <Form onSubmit={this.updateUser}>
                             <Form.Group className="Form--field w-100 mb-3">
                                 <Form.Label>First Name</Form.Label>
-                                <Form.Control type="text" id='first_name' name='first_name' value={this.state.first_name} onChange={this.handleChange} />
+                                <Form.Control required type="text" id='first_name' name='first_name' value={this.state.first_name} onChange={this.handleChange} />
                             </Form.Group>
                             <Form.Group className="Form--field w-100 mb-3">
                                 <Form.Label>Last Name</Form.Label>
-                                <Form.Control type="text" id='last_name' name='last_name' value={this.state.last_name} onChange={this.handleChange} />
+                                <Form.Control required type="text" id='last_name' name='last_name' value={this.state.last_name} onChange={this.handleChange} />
                             </Form.Group>
                             <Form.Group className="Form--field w-100 mb-3">
                                 <Form.Label>Email</Form.Label>
-                                <Form.Control type="email" id='email' name='email' value={this.state.email}  onChange={this.handleChange} />
+                                <Form.Control required type="email" id='email' name='email' value={this.state.email} onChange={this.handleChange} />
                             </Form.Group>
                             <Button type="submit" className='Form__button'>
                                 Update

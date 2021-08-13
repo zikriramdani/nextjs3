@@ -1,5 +1,6 @@
-import * as React from 'react'
-import { User } from '../../../types'
+import * as React from 'react';
+import { Button, Form } from "react-bootstrap";
+import { User } from '../../../types';
 
 type Props = {
     saveUser: (e: React.FormEvent, formData: User) => void
@@ -16,25 +17,23 @@ const AddUser: React.FC<Props> = ({ saveUser }) => {
     }
 
     return (
-        <form className='Form' onSubmit={(e) => saveUser(e, formData)}>
-            <div>
-                <div className='Form--field'>
-                    <label htmlFor='first_name'>First Name</label>
-                    <input onChange={handleForm} type='text' id='first_name' />
-                </div>
-                <div className='Form--field'>
-                    <label htmlFor='last_name'>Last Name</label>
-                    <input onChange={handleForm} type='text' id='last_name' />
-                </div>
-                <div className='Form--field'>
-                    <label htmlFor='email'>Email</label>
-                    <input onChange={handleForm} type='email' id='email' />
-                </div>
-            </div>
-            <button className='Form__button' disabled={formData === undefined ? true : false}>
+        <Form onSubmit={(e) => saveUser(e, formData)}>
+            <Form.Group className="Form--field mb-3">
+                <Form.Label>First Name</Form.Label>
+                <Form.Control required type="text" id='first_name' name='first_name' onChange={handleForm} />
+            </Form.Group>
+            <Form.Group className="Form--field mb-3">
+                <Form.Label>Last Name</Form.Label>
+                <Form.Control required type="text" id='last_name' name='last_name' onChange={handleForm} />
+            </Form.Group>
+            <Form.Group className="Form--field mb-3">
+                <Form.Label>Email</Form.Label>
+                <Form.Control required type="email" id='email' name='email' onChange={handleForm} />
+            </Form.Group>
+            <Button type="submit" className='Form__button' disabled={formData === undefined ? true : false}>
                 Add User
-            </button>
-        </form>
+            </Button> 
+        </Form>
     )
 }
 

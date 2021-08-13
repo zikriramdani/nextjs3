@@ -11,7 +11,8 @@ export const addUser = (payload) => {
 		return axios.post(apiUrl + 'users', payload).then(response => {
             // console.log('response', response)
 			if(response){
-				// dispatch(getListUser())
+                const nameSearch = '';
+				dispatch(getListUser(nameSearch))
 			}
 		})
 	}
@@ -40,7 +41,8 @@ export const updateUser = (payload) => {
 		return axios.put(apiUrl + 'users/' + userId, payload).then(response => {
             // console.log('response', response)
 			if(response){
-				// dispatch(getListUser())
+                const nameSearch = '';
+				dispatch(getListUser(nameSearch))
 			}
 		})
 	}
@@ -54,7 +56,8 @@ export const deleteUser = (userId) => {
 		return axios.delete(apiUrl + 'users/' + userId).then(response => {
             // console.log('response', response)
 			if(response){
-				// dispatch(getListUser())
+                const nameSearch = '';
+				dispatch(getListUser(nameSearch))
 			}
 		})
 	}
