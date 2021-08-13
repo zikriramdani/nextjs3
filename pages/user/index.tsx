@@ -70,7 +70,7 @@ class IndexPage extends React.Component<IUserProps, MyState> {
     }
 
     // Add User
-    addUser = async (e: React.FormEvent, formData: User) => {
+    addUser = async (e, formData: User) => {
         e.preventDefault()
         const payload: User = {
             id: Math.random(),
