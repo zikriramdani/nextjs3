@@ -7,6 +7,7 @@ import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import Tables from '../../components/Tables';
 import Modals from '../../components/Modals';
+import Paginations from '../../components/Paginations';
 
 import store from '../../store/store';
 import { addUser, getListUser, updateUser, deleteUser } from '../../action/action.user';
@@ -197,6 +198,11 @@ class IndexPage extends React.Component<IUserProps, MyState> {
                             }
                         </tbody>
                     </Tables>
+                    
+                    <div className="mb-3">
+                        <Paginations />
+                    </div>
+                    
 
                     {/* Modal Edit */}
                     <Modals show={this.state.editUser} 

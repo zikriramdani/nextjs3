@@ -3,7 +3,6 @@ import { Button, Form } from "react-bootstrap";
 import { User } from '../../../types';
 
 type Props = {
-    handleForm(): void;
     saveUser: (e: React.FormEvent, formData: User) => void
 }
 
