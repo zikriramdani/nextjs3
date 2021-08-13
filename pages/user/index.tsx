@@ -8,6 +8,7 @@ import Footer from '../../components/Footer';
 import Tables from '../../components/Tables';
 import Modals from '../../components/Modals';
 import Paginations from '../../components/Paginations';
+import { CSVLink, CSVDownload } from "react-csv";
 
 import store from '../../store/store';
 import { addUser, getListUser, updateUser, deleteUser } from '../../action/action.user';
@@ -183,7 +184,9 @@ class IndexPage extends React.Component<IUserProps, MyState> {
                                     <th scope="col" style={{width: '15%'}}>First Name</th>
                                     <th scope="col" style={{width: '15%'}}>Last Name</th>
                                     <th scope="col" style={{width: '15%'}}>Email</th>
-                                    <th scope="col"></th>
+                                    <th scope="col" className="text-end">
+                                        <CSVLink className="btn btn-dark" data={currentUser} filename={"my-file.csv"} target="_blank">Export to CSV</CSVLink>
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
