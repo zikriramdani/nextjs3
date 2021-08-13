@@ -1,25 +1,54 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
+import { Row, Col, Button } from "react-bootstrap";
+
 import Heads from '../../components/Heads';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
-import TableUser from '../../components/Tables';
+import Tables from '../../components/Tables';
+import Modals from '../../components/Modals';
 
 import store from '../../store/store';
-import { getListUser } from '../../action/action.user';
+import { addUser, getListUser, updateUser, deleteUser } from '../../action/action.user';
 
 import { User } from '../../types';
 import AddUser from './components/AddUser'; // Component Add User
+import EditUser from './components/AddUser'; // Component Edit User
 
 interface IUserProps {
+    addUser: any;
     userList: any [];
+    updateUser: any;
+    deleteUser: any;
 }
 
-class IndexPage extends Component<IUserProps> {
-    // const [userList, setUserList] = React.useState(posts)
+interface MyState {
+    editUser: any;
+    userId: string;
+    first_name: string;
+    last_name: string;
+    email: string;
+}
+
+class IndexPage extends React.Component<IUserProps, MyState> {
 
     constructor(props) {
         super(props);
+
+        this.state = {
+            // messages: null,
+            editUser: false, // Modal Edit
+
+            // Data Modal Edit
+            userId: '',
+            first_name: '',
+            last_name: '',
+            email: '',
+        }
+
+        // Modal Edit
+        this.editUser = this.editUser.bind(this);
+        this.editUserClose = this.editUserClose.bind(this);
     }
 
     componentDidMount() {
@@ -27,26 +56,64 @@ class IndexPage extends Component<IUserProps> {
     }
 
     // Add User
-    // addUser = async (e: React.FormEvent, formData: User) => {
-    //     e.preventDefault()
-    //     const user: User = {
-    //         id: Math.random(),
-    //         first_name: formData.first_name,
-    //         last_name: formData.last_name,
-    //         email: formData.email,
-    //     }
-    //     console.log('AddUser', user)
-    //     // setUserList([post, ...postList])
-    // }
+    addUser = async (e: React.FormEvent, formData: User) => {
+        e.preventDefault()
+        const payload: User = {
+            id: Math.random(),
+            first_name: formData.first_name,
+            last_name: formData.last_name,
+            email: formData.email,
+        }
+        // console.log('AddUser', payload)
+        this.props.addUser(payload);
+    }
+
+    // Modal Edit
+    editUser = async (user) => {
+        // console.log('editUser', user)
+        this.setState({
+            editUser: true,
+
+            userId: user.id,
+            first_name: user.first_name,
+            last_name: user.last_name,
+            email: user.email
+        });
+    }
+    editUserClose = event =>  {
+        this.setState({
+            editUser: false
+        });
+    }
+
+    // Handle Form Edit
+    handleChange = event => {
+        // This triggers everytime the input is changed
+        if (event.target.files) {
+            this.setState({ ...this.state, [event.target.name]: event.target.files[0] });
+        } else {
+            this.setState({ ...this.state, [event.target.name]: event.target.value });
+        }
+    };
+
+    // Update
+    updateUser = event => {
+        const payload = {
+            id : this.state.userId,
+            first_name : this.state.first_name,
+            last_name : this.state.last_name,
+            email : this.state.email
+        }
+
+        this.props.updateUser(payload)
+        this.setState({
+            editUser: false
+        });
+    }
 
     // Delete ByID
-    deleteUser = async (id: number) => {
-        console.log('deleteUser', id)
-        const userList = this.props.userList;
-        const users: User[] = userList.filter((user: User) => user.id !== id)
-        console.log(users)
-        getListUser()(store.dispatch);
-        // setUserList(posts)
+    deleteUser = async (userId: number) => {
+        this.props.deleteUser(userId);
     }
 
     render() {
@@ -58,11 +125,11 @@ class IndexPage extends Component<IUserProps> {
                 <Navbar />
                     <h1>List User</h1>
 
-                    {/* <div className="mb-3">
+                    <div className="mb-3">
                         <AddUser saveUser={this.addUser} />
-                    </div> */}
-
-                    <TableUser>
+                    </div>
+                    
+                    <Tables>
                         <thead>
                             <tr>
                                 <th scope="col" style={{width: '5%'}}>No</th>
@@ -82,21 +149,51 @@ class IndexPage extends Component<IUserProps> {
                                     <td>{user.last_name}</td>
                                     <td>{user.email}</td>
                                     <td className="text-end">
-                                        <button className='Card__button' onClick={() => this.deleteUser(user.id)}>
-                                            Delete
-                                        </button>
+                                        <div className='d-flex justify-content-end'>
+                                            <Button className='btn btn-warning me-3' onClick={() => this.editUser(user)}>
+                                                Edit
+                                            </Button>
+
+                                            <Button className="btn btn-danger" onClick={() => this.deleteUser(user.id)}>
+                                                Delete
+                                            </Button>
+                                        </div>
                                     </td>
                                 </tr>
                             )) :
                                 <tr>
-                                    <td colSpan={4} className="text-center">
+                                    <td colSpan={6} className="text-center">
                                         No data
                                     </td>
                                 </tr>
                             }
                         </tbody>
-                    </TableUser>
-                    
+                    </Tables>
+
+                    {/* Modal Edit */}
+                    <Modals show={this.state.editUser} 
+                    onHide={this.editUserClose} 
+                    title="Edit User"
+                    content={
+                        <form onSubmit={this.updateUser} >
+                            <div className='Form--field w-100'>
+                                <label htmlFor='first_name'>First Name</label>
+                                <input id='first_name' name='first_name' value={this.state.first_name} onChange={this.handleChange} />
+                            </div>
+                            <div className='Form--field w-100'>
+                                <label htmlFor='last_name'>Last Name</label>
+                                <input id='last_name' name='last_name' value={this.state.last_name} onChange={this.handleChange} />
+                            </div>
+                            <div className='Form--field w-100'>
+                                <label htmlFor='email'>Email</label>
+                                <input type="email" id='email' name='email' value={this.state.email}  onChange={this.handleChange} />
+                            </div>
+                            <Button type="submit" className='Form__button'>
+                                Update
+                            </Button>
+                        </form>
+                    }
+                    />
                 <Footer />
             </main>
         )
@@ -115,7 +212,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     // console.log('mapDispatchToProps', dispatch)
     return {
-        getListUser: () => dispatch(getListUser())
+        addUser: (payload) => dispatch(addUser(payload)), // Update
+        getListUser: () => dispatch(getListUser()), // Read
+        updateUser: (payload) => dispatch(updateUser(payload)), // Update
+        deleteUser: (userId) => dispatch(deleteUser(userId)) // Delete
     }
 }
 

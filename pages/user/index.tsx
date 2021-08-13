@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import { Row, Col, Button } from "react-bootstrap";
+import { Row, Col, Button, Form } from "react-bootstrap";
 
 import Heads from '../../components/Heads';
 import Navbar from '../../components/Navbar';
@@ -13,7 +13,6 @@ import { addUser, getListUser, updateUser, deleteUser } from '../../action/actio
 
 import { User } from '../../types';
 import AddUser from './components/AddUser'; // Component Add User
-import EditUser from './components/AddUser'; // Component Edit User
 
 interface IUserProps {
     addUser: any;
@@ -125,8 +124,14 @@ class IndexPage extends React.Component<IUserProps, MyState> {
                 <Navbar />
                     <h1>List User</h1>
 
-                    <div className="mb-3">
+                    <div className="mb-5">
                         <AddUser saveUser={this.addUser} />
+                    </div>
+
+                    <div className="mb-3">
+                        <Form.Group className="mb-3">
+                            <Form.Control type="text" placeholder="Search..." />
+                        </Form.Group>
                     </div>
                     
                     <Tables>
@@ -175,23 +180,23 @@ class IndexPage extends React.Component<IUserProps, MyState> {
                     onHide={this.editUserClose} 
                     title="Edit User"
                     content={
-                        <form onSubmit={this.updateUser} >
-                            <div className='Form--field w-100'>
-                                <label htmlFor='first_name'>First Name</label>
-                                <input id='first_name' name='first_name' value={this.state.first_name} onChange={this.handleChange} />
-                            </div>
-                            <div className='Form--field w-100'>
-                                <label htmlFor='last_name'>Last Name</label>
-                                <input id='last_name' name='last_name' value={this.state.last_name} onChange={this.handleChange} />
-                            </div>
-                            <div className='Form--field w-100'>
-                                <label htmlFor='email'>Email</label>
-                                <input type="email" id='email' name='email' value={this.state.email}  onChange={this.handleChange} />
-                            </div>
+                        <Form onSubmit={this.updateUser}>
+                            <Form.Group className="Form--field w-100 mb-3">
+                                <Form.Label>First Name</Form.Label>
+                                <Form.Control type="text" id='first_name' name='first_name' value={this.state.first_name} onChange={this.handleChange} />
+                            </Form.Group>
+                            <Form.Group className="Form--field w-100 mb-3">
+                                <Form.Label>Last Name</Form.Label>
+                                <Form.Control type="text" id='last_name' name='last_name' value={this.state.last_name} onChange={this.handleChange} />
+                            </Form.Group>
+                            <Form.Group className="Form--field w-100 mb-3">
+                                <Form.Label>Email</Form.Label>
+                                <Form.Control type="email" id='email' name='email' value={this.state.email}  onChange={this.handleChange} />
+                            </Form.Group>
                             <Button type="submit" className='Form__button'>
                                 Update
-                            </Button>
-                        </form>
+                            </Button> 
+                        </Form>
                     }
                     />
                 <Footer />
