@@ -174,46 +174,48 @@ class IndexPage extends React.Component<IUserProps, MyState> {
                         </Form.Group>
                     </div>
                     
-                    <Tables>
-                        <thead>
-                            <tr>
-                                {/* <th scope="col" style={{width: '5%'}}>No</th> */}
-                                <th scope="col" style={{width: '15%'}}>First Name</th>
-                                <th scope="col" style={{width: '15%'}}>Last Name</th>
-                                <th scope="col" style={{width: '15%'}}>Email</th>
-                                <th scope="col"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {userList.length > 0 ? currentUser.map((user, no) => (
-                                <tr className="align-baseline" key={user.id}>
-                                    {/* <td>
-                                        {no+1}
-                                    </td> */}
-                                    <td>{user.first_name}</td>
-                                    <td>{user.last_name}</td>
-                                    <td>{user.email}</td>
-                                    <td className="text-end">
-                                        <div className='d-flex justify-content-end'>
-                                            <Button className='btn btn-warning me-3' onClick={() => this.editUser(user)}>
-                                                Edit
-                                            </Button>
-
-                                            <Button className="btn btn-danger" onClick={() => this.deleteUser(user.id)}>
-                                                Delete
-                                            </Button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            )) :
+                    <div className="w-100">
+                        <Tables>
+                            <thead>
                                 <tr>
-                                    <td colSpan={6} className="text-center">
-                                        No data
-                                    </td>
+                                    {/* <th scope="col" style={{width: '5%'}}>No</th> */}
+                                    <th scope="col" style={{width: '15%'}}>First Name</th>
+                                    <th scope="col" style={{width: '15%'}}>Last Name</th>
+                                    <th scope="col" style={{width: '15%'}}>Email</th>
+                                    <th scope="col"></th>
                                 </tr>
-                            }
-                        </tbody>
-                    </Tables>
+                            </thead>
+                            <tbody>
+                                {userList.length > 0 ? currentUser.map((user, no) => (
+                                    <tr className="align-baseline" key={user.id}>
+                                        {/* <td>
+                                            {no+1}
+                                        </td> */}
+                                        <td>{user.first_name}</td>
+                                        <td>{user.last_name}</td>
+                                        <td>{user.email}</td>
+                                        <td className="text-end">
+                                            <div className='d-flex justify-content-end'>
+                                                <Button className='btn btn-warning me-3' onClick={() => this.editUser(user)}>
+                                                    Edit
+                                                </Button>
+
+                                                <Button className="btn btn-danger" onClick={() => this.deleteUser(user.id)}>
+                                                    Delete
+                                                </Button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                )) :
+                                    <tr>
+                                        <td colSpan={6} className="text-center">
+                                            No data
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </Tables>
+                    </div>
                     
                     <div className="d-flex justify-content-center mb-3">
                         <Paginations userPerpage={this.state.userPerpage} totalUser={userList.length} paginate={paginate} prevPage={prevPage} nextPage={nextPage} />
