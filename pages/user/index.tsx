@@ -27,6 +27,9 @@ interface MyState {
     first_name: string;
     last_name: string;
     email: string;
+
+    // Search
+    nameSearch: string;
 }
 
 class IndexPage extends React.Component<IUserProps, MyState> {
@@ -43,6 +46,9 @@ class IndexPage extends React.Component<IUserProps, MyState> {
             first_name: '',
             last_name: '',
             email: '',
+
+            // Search
+            nameSearch: ''
         }
 
         // Modal Edit
@@ -51,7 +57,7 @@ class IndexPage extends React.Component<IUserProps, MyState> {
     }
 
     componentDidMount() {
-        getListUser()(store.dispatch);
+        getListUser(this.state.nameSearch)(store.dispatch);
     }
 
     // Add User
@@ -115,6 +121,23 @@ class IndexPage extends React.Component<IUserProps, MyState> {
         this.props.deleteUser(userId);
     }
 
+    // Handle Search
+    handleChangeSearch = event => {
+        // This triggers everytime the input is changed
+        this.setState({
+            nameSearch: event.target.value
+        });
+        // console.log('handleChangeSearch', event.target.value)
+        getListUser(this.state.nameSearch)(store.dispatch);
+    };
+
+    resetSearch = event => {
+        if(event.target.value == '' || event.target.value == ' ') {
+            // console.log('resetsearch', event.target.value)
+            getListUser(this.state.nameSearch)(store.dispatch);
+        }
+    }
+
     render() {
         const userList = this.props.userList || []
         return (
@@ -130,7 +153,7 @@ class IndexPage extends React.Component<IUserProps, MyState> {
 
                     <div className="mb-3">
                         <Form.Group className="mb-3">
-                            <Form.Control type="text" placeholder="Search..." />
+                            <Form.Control type="text" placeholder="Search..." value={this.state.nameSearch} onKeyUp={this.resetSearch} onChange={this.handleChangeSearch} />
                         </Form.Group>
                     </div>
                     
@@ -218,7 +241,7 @@ const mapDispatchToProps = (dispatch) => {
     // console.log('mapDispatchToProps', dispatch)
     return {
         addUser: (payload) => dispatch(addUser(payload)), // Update
-        getListUser: () => dispatch(getListUser()), // Read
+        getListUser: (nameSearch) => dispatch(getListUser(nameSearch)), // Read
         updateUser: (payload) => dispatch(updateUser(payload)), // Update
         deleteUser: (userId) => dispatch(deleteUser(userId)) // Delete
     }

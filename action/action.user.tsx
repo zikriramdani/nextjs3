@@ -11,18 +11,18 @@ export const addUser = (payload) => {
 		return axios.post(apiUrl + 'users', payload).then(response => {
             // console.log('response', response)
 			if(response){
-				dispatch(getListUser())
+				// dispatch(getListUser())
 			}
 		})
 	}
 }
 
 // Read
-export const getListUser = () => {
+export const getListUser = (nameSearch) => {
     // console.log('action.user getListUser')
     return (dispatch) => {
         // console.log('dispatch getListUser')
-        return axios.get(apiUrl + 'users?sortBy=id&order=desc').then(response => {
+        return axios.get(apiUrl + 'users?sortBy=id&order=desc&search=' + nameSearch).then(response => {
             // console.log('axios getListUser', response.data)
             if(response.data) {
                 dispatch(saveListUser(response.data))
@@ -40,7 +40,7 @@ export const updateUser = (payload) => {
 		return axios.put(apiUrl + 'users/' + userId, payload).then(response => {
             // console.log('response', response)
 			if(response){
-				dispatch(getListUser())
+				// dispatch(getListUser())
 			}
 		})
 	}
@@ -54,7 +54,7 @@ export const deleteUser = (userId) => {
 		return axios.delete(apiUrl + 'users/' + userId).then(response => {
             // console.log('response', response)
 			if(response){
-				dispatch(getListUser())
+				// dispatch(getListUser())
 			}
 		})
 	}
